@@ -1,0 +1,313 @@
+\pgfdeclareshape{divide}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    %
+    % Now the | and -- lines:
+    \begin{pgfscope}
+        \pgfpathcircle{\pgfpoint{0\pgfutil@tempdima}{0.3\pgfutil@tempdima}}{0.08\pgfutil@tempdima}%
+        \pgfpathcircle{\pgfpoint{0\pgfutil@tempdima}{-0.3\pgfutil@tempdima}}{0.08\pgfutil@tempdima}%
+        \pgfusepath{fill}
+    \end{pgfscope}
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.4\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{+0.4\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+  }%
+}
+
+\pgfdeclareshape{multiply}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    %
+    % Now the | and -- lines:
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{0.4\pgfutil@tempdima}{0.4\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.4\pgfutil@tempdima}{-0.4\pgfutil@tempdima}}}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.4\pgfutil@tempdima}{0.4\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.4\pgfutil@tempdima}{-0.4\pgfutil@tempdima}}}%
+  }%
+}
+
+\pgfdeclareshape{add}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    %
+    % Now the | and -- lines:
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{0}{0.4\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0}{-0.4\pgfutil@tempdima}}}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.4\pgfutil@tempdima}{0}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.4\pgfutil@tempdima}{0}}}%
+  }%
+}
+
+\pgfdeclareshape{subadd}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    %
+    % add
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.75\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.25\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.5\pgfutil@tempdima}{-0.25\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.5\pgfutil@tempdima}{0.25\pgfutil@tempdima}}}%
+    % substract
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.25\pgfutil@tempdima}{0.5\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.25\pgfutil@tempdima}{0.5\pgfutil@tempdima}}}%
+  }%
+}
+
+\pgfdeclareshape{addsubflip}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    %
+    % add
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{0.75\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.25\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{0.5\pgfutil@tempdima}{-0.25\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.5\pgfutil@tempdima}{0.25\pgfutil@tempdima}}}%
+    % substract
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.25\pgfutil@tempdima}{0.5\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.25\pgfutil@tempdima}{0.5\pgfutil@tempdima}}}%
+  }%
+}
+
+\pgfdeclareshape{addsub}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    %
+    % add
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.75\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.25\pgfutil@tempdima}{0\pgfutil@tempdima}}}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.5\pgfutil@tempdima}{-0.25\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.5\pgfutil@tempdima}{0.25\pgfutil@tempdima}}}%
+    % substract
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.25\pgfutil@tempdima}{-0.5\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{0.25\pgfutil@tempdima}{-0.5\pgfutil@tempdima}}}%
+  }%
+}
+
+
+\pgfdeclareshape{equal}
+{%
+  % All anchors are taken from the 'circle' shape:
+  \inheritsavedanchors[from={circle}]%
+  \inheritanchor[from={circle}]{center}%
+  \inheritanchor[from={circle}]{mid}%
+  \inheritanchor[from={circle}]{base}%
+  \inheritanchor[from={circle}]{north}%
+  \inheritanchor[from={circle}]{south}%
+  \inheritanchor[from={circle}]{west}%
+  \inheritanchor[from={circle}]{east}%
+  \inheritanchor[from={circle}]{mid west}%
+  \inheritanchor[from={circle}]{mid east}%
+  \inheritanchor[from={circle}]{base west}%
+  \inheritanchor[from={circle}]{base east}%
+  \inheritanchor[from={circle}]{north west}%
+  \inheritanchor[from={circle}]{south west}%
+  \inheritanchor[from={circle}]{north east}%
+  \inheritanchor[from={circle}]{south east}%
+  \inheritanchorborder[from={circle}]%
+  %
+  % Only the background path is different
+  %
+  \backgroundpath{%
+    % First the existing 'circle' code:
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+      \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+      \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    %
+    % Now the | and -- lines:
+    \pgfpathcircle{\centerpoint}{\pgfutil@tempdima}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.4\pgfutil@tempdima}{0.15\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{+0.4\pgfutil@tempdima}{0.15\pgfutil@tempdima}}}%
+    \pgfmoveto{\pgfpointadd{\centerpoint}{\pgfpoint{-0.4\pgfutil@tempdima}{-0.15\pgfutil@tempdima}}}%
+    \pgflineto{\pgfpointadd{\centerpoint}{\pgfpoint{+0.4\pgfutil@tempdima}{-0.15\pgfutil@tempdima}}}%
+  }%
+}

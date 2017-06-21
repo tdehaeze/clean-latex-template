@@ -1,0 +1,120 @@
+\documentclass[12pt]{report}
+
+% =============================================================
+% PACKAGES
+% =============================================================
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+
+\usepackage{lmodern} % Latin Modern Font
+\usepackage{gensymb} % Generic symbols for both text and math mode
+
+\usepackage{import} % Used to import .tex files
+
+\usepackage{tikz}             % Tikz
+\usepackage{tikzscale}        % Used to scale Tikz graphics
+\usepackage{pgfshape_control} % Custom Tikz shapes
+\usepackage{adjustbox}        % Used to proper positioning of tikz pictures
+\usepackage{circuitikz}       % Draw electronic circuits
+\usepackage{pgfpages}         % Needed to use notes
+\usepackage{pgfplots}         % Used to plot functions
+
+\usepackage{amsmath}   % Main math Package
+\usepackage{mathtools} % Extension package to amsmath
+\usepackage{amsthm}    % Typesetting theorems (AMS style)
+\usepackage{amsfonts}  % More fonts from the AMS
+\usepackage{textcomp}  % provide many text symbols
+\usepackage{steinmetz} % For phase symbol
+\interdisplaylinepenalty=2500
+
+\usepackage{xstring}  % Utils to manipulate strings
+\usepackage{xcolor}   % Color extension
+\usepackage{ifthen}   % Add basic if/then
+\usepackage{esvect}   % Beautyfull vectors
+\usepackage{graphicx} % Enhanced support for graphics
+\usepackage{grffile}  % Used by matlab2tikz
+
+\usepackage[square,sort,comma,numbers]{natbib} % Better Bibliography
+\usepackage[hidelinks]{hyperref} % Black links
+\usepackage{caption} % Links to caption goes to top of picture
+
+\usepackage[load-configurations = abbreviations]{siunitx} % SI units
+\sisetup{
+    locale = FR,
+    detect-all,
+    range-phrase=--,
+    range-units=single,
+}
+% =============================================================
+
+
+% =============================================================
+% TIKZ
+% =============================================================
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{babel}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{intersections}
+\usetikzlibrary{3d}
+
+\usepgfplotslibrary{patchplots}
+
+\tikzset{%
+  do path picture/.style={%
+    path picture={%
+      \pgfpointdiff{\pgfpointanchor{path picture bounding box}{south west}}%
+        {\pgfpointanchor{path picture bounding box}{north east}}%
+      \pgfgetlastxy\x\y%
+      \tikzset{x=\x/2,y=\y/2}%
+      #1
+    }
+  },
+  sin wave/.style={do path picture={    
+    \draw [line cap=round] (-3/4,0)
+      sin (-3/8,1/2) cos (0,0) sin (3/8,-1/2) cos (3/4,0);
+  }},
+  >=latex
+}
+
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+
+\newlength\fheight
+\newlength\fwidth
+% =============================================================
+
+\begin{document}
+
+% Should ref all documents from bib
+%\nocite{*}
+
+% can use linebreaks \\ within to get better formatting as desired
+\title{Rapport TFE Asygn}
+
+\author{Dehaeze~Thomas}
+
+% Make the Title Page
+\maketitle
+
+% Make the Table of Contents
+\tableofcontents{}
+
+% Make the List of Figures
+\listoffigures{}
+
+% Main part
+
+
+% Bibliography
+\newpage
+\bibliography{main}
+
+\end{document}
+
