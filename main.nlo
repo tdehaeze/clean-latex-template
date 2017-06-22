@@ -1,0 +1,7 @@
+\nomenclatureentry{N$\mathcal{F}$@[{$\mathcal{F}$}]\begingroup Transformée de Fourier\nomeqref {0}|nompageref}{iv}
+\nomenclatureentry{N$\mathcal{L}$@[{$\mathcal{L}$}]\begingroup Transformée de Laplace\nomeqref {0}|nompageref}{iv}
+\nomenclatureentry{N$\mathcal{Z}$@[{$\mathcal{Z}$}]\begingroup Transformée en Z\nomeqref {0}|nompageref}{iv}
+\nomenclatureentry{APID@[{PID}]\begingroup Proportionnel / Intégral / Dérivé\nomeqref {0}|nompageref}{iv}
+\nomenclatureentry{P$c$@[{$c$}]\begingroup Vitesse de la lumière dans le vide     \nomunit{$\SI{299792458}{\metre\per\second}$}\nomeqref {0}|nompageref}{iv}
+\nomenclatureentry{P$\epsilon_0$@[{$\epsilon_0$}]\begingroup Permittivité du vide \nomunit{$\SI{8.854d-12}{\ampere\squared\second\tothe{4}\per\kilogram\per\metre\tothe{3}}$}\nomeqref {0}|nompageref}{iv}
+\nomenclatureentry{P$h$@[{$h$}]\begingroup Constante de Planck     \nomunit{$\SI{6.626d-34}{\metre\squared\kilogram\per\second}$}\nomeqref {0}|nompageref}{iv}
