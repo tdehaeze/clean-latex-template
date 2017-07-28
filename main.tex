@@ -46,10 +46,11 @@
 \usepackage{tabularx}  % table features
 \usepackage{enumitem}  % for simple list modifications
 \usepackage{blindtext} % package for blind text
+% \usepackage{fullpage}
 
 \usepackage[babel, french=guillemets]{csquotes}  % Used for french quotes
-\MakeOuterQuote{"}
-\frenchspacing
+% \MakeOuterQuote{"}
+\frenchspacing%
 
 \usepackage[
     title,
@@ -97,9 +98,9 @@
 % =============================================================
 \setstretch{1.2} % value for line spacing
 \setlength{\parindent}{0em} % value for paragraph indentation
-\clubpenalty = 10000 % prevent single lines at the beginning of a paragraph (Schusterjungen)
-\widowpenalty = 10000 % prevent single lines at the end of a paragraph (Hurenkinder)
-\displaywidowpenalty = 10000 %
+\clubpenalty=10000 % prevent single lines at the beginning of a paragraph (Schusterjungen)
+\widowpenalty=10000 % prevent single lines at the end of a paragraph (Hurenkinder)
+\displaywidowpenalty=10000 %
 \interdisplaylinepenalty=2500 %
 % =============================================================
 
@@ -127,10 +128,37 @@
 % =============================================================
 % Define some variables
 % =============================================================
-\newcommand{\rapportTitle}{Titre du rapport}
-\newcommand{\rapportAuthor}{Dehaeze~Thomas}
-\newcommand{\rapportSubject}{Sujet du rapport}
-\newcommand{\rapportDate}{\today}
+% Report
+\newcommand{\reportTitle}{Contrôle robuste d'un micro-capteur inertiel}
+\newcommand{\reportSubject}{Contrôle robuste d'un micro-capteur inertiel}
+\newcommand{\reportType}{Rapport Final - Stage de fin d'études}
+\newcommand{\reportDates}{01-04-2017 - 29-09-2017}
+\newcommand{\reportAuthor}{Dehaeze Thomas}
+
+% Author
+\newcommand{\authorFirstName}{Thomas}
+\newcommand{\authorLastName}{Dehaeze}
+\newcommand{\authorEmail}{dehaeze.thomas@gmail.com}
+
+% School
+\newcommand{\schoolName}{\'Ecole Centrale de Lyon}
+\newcommand{\schoolPlace}{\'Ecully}
+\newcommand{\schoolLogo}{./logos/logo-ecl.eps}
+
+% School Tutor
+\newcommand{\schoolTutorFirstName}{Anton}
+\newcommand{\schoolTutorLastName}{Korniienko}
+\newcommand{\schoolTutorEmail}{anton.korniienko@ec-lyon.fr}
+
+% Company
+\newcommand{\companyName}{Asygn}
+\newcommand{\companyPlace}{Grenoble}
+\newcommand{\companyLogo}{./logos/logo-asygn.png}
+
+% Company Tutors
+\newcommand{\companyTutorFirstName}{Christophe}
+\newcommand{\companyTutorLastName}{Le Blanc}
+\newcommand{\companyTutorEmail}{christophe.leblanc@asygn.com}
 % =============================================================
 
 
@@ -138,12 +166,12 @@
 % Hyperref and PDF Options
 % =============================================================
 \usepackage[                    % setup the hyperref-package options
-    pdftitle={\rapportTitle},   % title (PDF meta)
-    pdfsubject={\rapportSubject},% subject (PDF meta)
-    pdfauthor={\rapportAuthor}, % author (PDF meta)
+    pdftitle={\reportTitle},    % title (PDF meta)
+    pdfsubject={\reportSubject},% subject (PDF meta)
+    pdfauthor={\reportAuthor},  % author (PDF meta)
     plainpages=false,           %
     colorlinks=false,           % colorize links?
-    pdfborder={0                0 0}, %
+    pdfborder={0 0 0},          %
     breaklinks=true,            % allow line break inside links
     bookmarksnumbered=true,     %
     bookmarksopen=true          %
@@ -212,7 +240,7 @@
 % Nomenclature
 % =============================================================
 \usepackage[intoc, french]{nomencl} % Nomenclature
-\makenomenclature
+\makenomenclature%
 
 \usepackage{etoolbox} % Groups for the nomenclature
 \renewcommand\nomgroup[1]{%
@@ -272,7 +300,7 @@
         }
     },
     sin wave/.style={do path picture={    
-        \draw [line cap=round] (-3/4,0)
+        \draw[line cap=round] (-3/4,0)
         sin (-3/8,1/2) cos (0,0) sin (3/8,-1/2) cos (3/4,0);
     }},
     >=latex
@@ -281,8 +309,8 @@
 \pgfplotsset{compat=newest}
 \pgfplotsset{plot coordinates/math parser=false}
 
-\newlength\fheight
-\newlength\fwidth
+\newlength\fheight%
+\newlength\fwidth%
 % =============================================================
 
 
@@ -302,11 +330,60 @@
 % =============================================================
 \frontmatter
 
-\title{\rapportTitle}
-\author{\rapportAuthor}
-\date{\rapportDate}
+% \title{\rapportTitle}
+% \author{\rapportAuthor}
+% \date{\rapportDate}
 
-\maketitle % Make the Title Page
+% \maketitle % Make the Title Page
+
+\begin{titlepage}
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft}
+            \includegraphics[width=0.8\textwidth]{\schoolLogo}\\[0.5\baselineskip]
+            \schoolName{}\\
+            \schoolPlace{}\\
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright}
+            \includegraphics[width=0.8\textwidth]{\companyLogo}\\[0.5\baselineskip]
+            \companyName{}\\
+            \companyPlace{}\\
+        \end{flushright}
+    \end{minipage}\\[3.0\baselineskip]
+
+    \centering
+    {\large \reportType}\\[1.0\baselineskip]
+    {\Large \reportTitle}\\[1.5\baselineskip]
+    {\scshape \authorLastName}~\textit{\authorFirstName}\\[0.5\baselineskip]
+    \href{mailto:\authorEmail}{\authorEmail}\\[3.0\baselineskip]
+
+    \vfill
+
+    \begin{flushleft}
+        \emph{Option}: Informatique\\
+        \emph{Filière}: IoT\\
+        \emph{Métier}: Recherche et Développement\\[2.0\baselineskip]
+    \end{flushleft}
+
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft}
+            \emph{Tuteur ECL}:\\
+            {\scshape \schoolTutorLastName{}}~\textit{\schoolTutorFirstName{}}\\
+            \href{mailto:\schoolTutorEmail}{\schoolTutorEmail}\\
+        \end{flushleft}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright}
+            \emph{Tuteur Entreprise}: \\
+            {\scshape \companyTutorLastName{}}~\textit{\companyTutorFirstName{}}\\
+            \href{mailto:\companyTutorEmail}{\companyTutorEmail}\\
+        \end{flushright}
+    \end{minipage}\\[2.0\baselineskip]
+\end{titlepage}
+
 \tableofcontents{} % Make the Table of Contents
 \listoffigures{} % Make the List of Figures
 \import{./nomenclature/}{nomenclature.tex}
@@ -316,7 +393,7 @@
 % =============================================================
 % MAIN MATTER
 % =============================================================
-\mainmatter
+\mainmatter%
 
 \import{./introduction/}{introduction.tex}
 
@@ -342,7 +419,7 @@
 % BLACK MATTER
 % =============================================================
 % Bibliography
-\backmatter
+\backmatter%
 \newpage
 \printbibliography[
     heading=bibintoc

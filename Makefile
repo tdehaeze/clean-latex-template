@@ -30,4 +30,4 @@ clean:
 	latexmk -CA -bibtex
 
 open:
-	open main.pdf
+	o main.pdf
