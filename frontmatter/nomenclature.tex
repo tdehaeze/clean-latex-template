@@ -1,6 +1,3 @@
-\mbox{}
-
-
 % =============================================================
 % Notations
 % =============================================================
@@ -14,6 +11,7 @@
 % Acronymes
 % =============================================================
 \nomenclature[A]{PID}{Proportionnel / Intégral / Dérivé}
+\nomenclature[A]{MEMS}{Microsystème électromécanique}
 % =============================================================
 
 
@@ -30,7 +28,10 @@
     \nomunit{$\SI{6.626d-34}{\metre\squared\kilogram\per\second}$}}
 % =============================================================
 
-
-% \printnomenclatures. This command will print the nomenclatures list. 
-\printnomenclature
+{
+    \unumeredchaptermark{Liste des symboles}
+    \renewcommand{\MakeUppercase}[1]{#1}
+    \addcontentsline{toc}{chapter}{\protect\numberline{}Liste des symboles}
+    \printnomenclature[3.5em]
+}
 

@@ -15,7 +15,7 @@ all: main.pdf
 # -pvc (preview continuously) watches the directory for changes.
 # -quiet suppresses most status messages (https://tex.stackexchange.com/questions/40783/can-i-make-latexmk-quieter).
 main.pdf: main.tex
-	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode" -use-make main.tex
+	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape" -use-make main.tex
 
 # The .PHONY rule keeps make from processing a file named "watch" or "clean".
 .PHONY: watch

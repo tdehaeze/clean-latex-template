@@ -1,7 +1,7 @@
 \documentclass[%
     paper=A4,               % paper size --> A4 is default in Germany
     twoside=true,           % onesite or twoside printing
-    openany,                % doublepage cleaning ends up right side
+    openright,              % doublepage cleaning ends up right side
     chapterprefix=true,     % prefix for chapter marks
     12pt,                   % font size
     headings=normal,        % size of headings
@@ -11,418 +11,109 @@
     draft=false             % value for draft version
 ]{book}%
 
+
 % =============================================================
-% PACKAGES
+% INPUT CONFIGURATION FILES
 % =============================================================
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[francais]{babel}
-
-\usepackage{showframe}
-
-\usepackage{lmodern} % Latin Modern Font
-\usepackage{gensymb} % Generic symbols for both text and math mode
-
-\usepackage{import} % Used to import .tex files
-
-\usepackage[lofdepth]{subfig} % Subfigures
-\usepackage{wrapfig}          % Wrap text around figure
-
-\usepackage{amsmath}   % Main math Package
-\usepackage{mathtools} % Extension package to amsmath
-\usepackage{amsthm}    % Typesetting theorems (AMS style)
-\usepackage{amsfonts}  % More fonts from the AMS
-\usepackage{textcomp}  % provide many text symbols
-\usepackage{steinmetz} % For phase symbol
-
-\usepackage{xstring}  % Utils to manipulate strings
-\usepackage{ifthen}   % Add basic if/then
-\usepackage{esvect}   % Beautyfull vectors
-\usepackage{graphicx} % Enhanced support for graphics
-\usepackage{grffile}  % Used by matlab2tikz
-
-\usepackage{microtype} % typographic tuning
-\usepackage{setspace}  % for line spacing, e.g. \onehalfspacing
-\usepackage{tabularx}  % table features
-\usepackage{enumitem}  % for simple list modifications
-\usepackage{blindtext} % package for blind text
-% \usepackage{fullpage}
-
-\usepackage[babel, french=guillemets]{csquotes}  % Used for french quotes
-% \MakeOuterQuote{"}
-\frenchspacing%
-
-\usepackage[
-    title,
-    titletoc
-]{appendix}
-
-\usepackage[load-configurations = abbreviations]{siunitx} % SI units
-\sisetup{
-    locale = FR,
-    detect-all,
-    range-phrase=--,
-    range-units=single
-}
+\input{./configuration/comon_packages.tex}
+\input{./configuration/variables.tex}
+\input{./configuration/style.tex}
+\input{./configuration/tikz.tex}
+\input{./configuration/bibliography.tex}
+\input{./configuration/nomenclature.tex}
 % =============================================================
 
 
 % =============================================================
-% Bibliography
-% =============================================================
-%\usepackage[square,sort,comma,numbers]{natbib} % Better Bibliography
-
-\usepackage[        % use biblatex for bibliography
-    backend=biber,  % use biber backend (bibtex replacement) or bibtex
-    style=numeric,  % use alphabetic (or numeric) bib style
-    natbib=true,    % allow natbib commands
-    hyperref=true,  % activate hyperref support
-    backref=true,   % activate backrefs
-    isbn=false,     % don't show isbn tags
-    url=false,      % don't show url tags
-    doi=false,      % don't show doi tags
-    urldate=long,   % display type for dates
-    maxnames=3,     %
-    minnames=1,     %
-    maxbibnames=5,  %
-    minbibnames=3,  %
-    maxcitenames=2, %
-    mincitenames=1  %
-]{biblatex}
-\addbibresource{main.bib}
-% =============================================================
-
-
-% =============================================================
-% Text Format
-% =============================================================
-\setstretch{1.2} % value for line spacing
-\setlength{\parindent}{0em} % value for paragraph indentation
-\clubpenalty=10000 % prevent single lines at the beginning of a paragraph (Schusterjungen)
-\widowpenalty=10000 % prevent single lines at the end of a paragraph (Hurenkinder)
-\displaywidowpenalty=10000 %
-\interdisplaylinepenalty=2500 %
-% =============================================================
-
-
-% =============================================================
-% Geometry
-% =============================================================
-\usepackage[               % page layout modifications
-    paper=a4paper,         % use A4 paper size
-    includehead,           % include header space
-    includefoot,           % include footer space
-    includemp,             % include side note space
-    bindingoffset=0.5cm,   % binding correction
-    top=2.25cm,            % total body: top margin
-    left=3.75cm,           % total body: left margin (odd pages)
-    right=0.75cm,          % total body: right margin (odd pages)
-    bottom=1.5cm,          % total body: bottom margin
-    marginparwidth=1.75cm, % width for side note
-    marginparsep=10pt,     % space between notes and body text (content)
-    footskip=2cm           % footer skip size
-]{geometry}
-% =============================================================
-
-
-% =============================================================
-% Define some variables
-% =============================================================
-% Report
-\newcommand{\reportTitle}{Contrôle robuste d'un micro-capteur inertiel}
-\newcommand{\reportSubject}{Contrôle robuste d'un micro-capteur inertiel}
-\newcommand{\reportType}{Rapport Final - Stage de fin d'études}
-\newcommand{\reportDates}{01-04-2017 - 29-09-2017}
-\newcommand{\reportAuthor}{Dehaeze Thomas}
-
-% Author
-\newcommand{\authorFirstName}{Thomas}
-\newcommand{\authorLastName}{Dehaeze}
-\newcommand{\authorEmail}{dehaeze.thomas@gmail.com}
-
-% School
-\newcommand{\schoolName}{\'Ecole Centrale de Lyon}
-\newcommand{\schoolPlace}{\'Ecully}
-\newcommand{\schoolLogo}{./logos/logo-ecl.eps}
-
-% School Tutor
-\newcommand{\schoolTutorFirstName}{Anton}
-\newcommand{\schoolTutorLastName}{Korniienko}
-\newcommand{\schoolTutorEmail}{anton.korniienko@ec-lyon.fr}
-
-% Company
-\newcommand{\companyName}{Asygn}
-\newcommand{\companyPlace}{Grenoble}
-\newcommand{\companyLogo}{./logos/logo-asygn.png}
-
-% Company Tutors
-\newcommand{\companyTutorFirstName}{Christophe}
-\newcommand{\companyTutorLastName}{Le Blanc}
-\newcommand{\companyTutorEmail}{christophe.leblanc@asygn.com}
-% =============================================================
-
-
-% =============================================================
-% Hyperref and PDF Options
-% =============================================================
-\usepackage[                    % setup the hyperref-package options
-    pdftitle={\reportTitle},    % title (PDF meta)
-    pdfsubject={\reportSubject},% subject (PDF meta)
-    pdfauthor={\reportAuthor},  % author (PDF meta)
-    plainpages=false,           %
-    colorlinks=false,           % colorize links?
-    pdfborder={0 0 0},          %
-    breaklinks=true,            % allow line break inside links
-    bookmarksnumbered=true,     %
-    bookmarksopen=true          %
-]{hyperref}
-% =============================================================
-
-
-% =============================================================
-% Colors
-% =============================================================
-\usepackage{xcolor}   % Color extension
-
-\definecolor{colorblack}{rgb}{0, 0, 0}
-\definecolor{colorblue}{rgb}{0, 0.4470, 0.7410}
-\definecolor{colorred}{rgb}{0.8500, 0.3250, 0.0980}
-\definecolor{coloryellow}{rgb}{0.9290, 0.6940, 0.1250}
-\definecolor{colorpurple}{rgb}{0.4940, 0.1840, 0.5560}
-\definecolor{colorgreen}{rgb}{0.4660, 0.6740, 0.1880}
-\definecolor{colorcyan}{rgb}{0.3010, 0.7450, 0.9330}
-\definecolor{colorbordeau}{rgb}{0.6350, 0.0780, 0.1840}
-% =============================================================
-
-
-% =============================================================
-% Caption
-% =============================================================
-\usepackage[                                   % modify figure and table captions
-    font={small},                              % small font size
-    labelfont={bf,sf,color=colorblue},         % label in bold, sans-serif and magenta
-    labelsep=endash,                           % separator: none, colon, period, space, quad, newline, endash
-    singlelinecheck=false                      % no centered single-lined captions
-]{caption}
-% =============================================================
-
-
-% =============================================================
-% Headers and Footers
-% =============================================================
-\usepackage{fancyhdr} % Modify Headers and Footers
-
-\pagestyle{fancy}
-\fancyhf{}
-
-\renewcommand{\chaptermark}[1]{%
-    \markboth{\textsc{\small{\chaptername\ \thechapter.\ #1}}}{}
-}
-\renewcommand{\sectionmark}[1]{%
-    \markright{\textsc{\small{\thesection.\ #1}}}{}
-}
-
-% Header
-\fancyhead[LE,RO]{}
-\fancyhead[RE,LO]{\rightmark}
-
-% Footer
-\fancyfoot[CE,CO]{\leftmark}
-\fancyfoot[LE,RO]{\thepage}
- 
-% Rulers
-\renewcommand{\headrulewidth}{1.0pt}
-\renewcommand{\footrulewidth}{0.0pt}
-% =============================================================
-
-
-% =============================================================
-% Nomenclature
-% =============================================================
-\usepackage[intoc, french]{nomencl} % Nomenclature
-\makenomenclature%
-
-\usepackage{etoolbox} % Groups for the nomenclature
-\renewcommand\nomgroup[1]{%
-  \item[\bfseries
-  \ifstrequal{#1}{P}{Constantes Physiques}{%
-  \ifstrequal{#1}{N}{Notations}{%
-  \ifstrequal{#1}{A}{Acronymes}{}}}%
-]}
-
-% Used to add units to the nomenclature
-\newcommand{\nomunit}[1]{%
-    \renewcommand{\nomentryend}{\hspace*{\fill}#1}
-}
-
-% changes the default title.
-\renewcommand{\nomname}{Liste des symboles}
-
-% inserts some text in between the title and the list symbols. 
-%\renewcommand{\nompreamble}{The next list...}
-% =============================================================
-
-
-% =============================================================
-% TIKZ
-% =============================================================
-\usepackage{tikz}             % Tikz
-\usepackage{tikzscale}        % Used to scale Tikz graphics
-\usepackage{adjustbox}        % Used to proper positioning of tikz pictures
-\usepackage{circuitikz}       % Draw electronic circuits
-\usepackage{pgfpages}         % Needed to use notes
-\usepackage{pgfplots}         % Used to plot functions
-\usepackage{pgfshape_control} % Custom Tikz shapes
-
-\usetikzlibrary{calc}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{shapes}
-\usetikzlibrary{shapes.geometric}
-\usetikzlibrary{positioning}
-\usetikzlibrary{decorations.text}
-\usetikzlibrary{decorations.pathmorphing}
-\usetikzlibrary{babel}
-\usetikzlibrary{plotmarks}
-\usetikzlibrary{intersections}
-\usetikzlibrary{3d}
-
-\usepgfplotslibrary{patchplots}
-
-\tikzset{%
-    font={\small},% Set all font to small size
-    do path picture/.style={%
-        path picture={%
-            \pgfpointdiff{\pgfpointanchor{path picture bounding box}{south west}}%
-            {\pgfpointanchor{path picture bounding box}{north east}}%
-            \pgfgetlastxy\x\y%
-            \tikzset{x=\x/2,y=\y/2}%
-            #1
-        }
-    },
-    sin wave/.style={do path picture={    
-        \draw[line cap=round] (-3/4,0)
-        sin (-3/8,1/2) cos (0,0) sin (3/8,-1/2) cos (3/4,0);
-    }},
-    >=latex
-}
-
-\pgfplotsset{compat=newest}
-\pgfplotsset{plot coordinates/math parser=false}
-
-\newlength\fheight%
-\newlength\fwidth%
-% =============================================================
-
-
-% =============================================================
-\input{style.tex}
-% =============================================================
-
-
+% BEGIN DOCUMENT
 % =============================================================
 \begin{document}
 
 % Should ref all documents from bib
-%\nocite{*}
+\nocite{*}
 
 % =============================================================
 % FRONT MATTER
 % =============================================================
-\frontmatter
+% Title Page
+\import{./titlepage/}{titlepage.tex}
 
-% \title{\rapportTitle}
-% \author{\rapportAuthor}
-% \date{\rapportDate}
+% Should be after title page
+\frontmatter{}
 
-% \maketitle % Make the Title Page
+% Start Numbering the front matter
+\thispagestyle{frontmatterstyle}\pagestyle{frontmatterstyle}\setcounter{page}{1}
 
-\begin{titlepage}
-    \begin{minipage}{0.4\textwidth}
-        \begin{flushleft}
-            \includegraphics[width=0.8\textwidth]{\schoolLogo}\\[0.5\baselineskip]
-            \schoolName{}\\
-            \schoolPlace{}\\
-        \end{flushleft}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.4\textwidth}
-        \begin{flushright}
-            \includegraphics[width=0.8\textwidth]{\companyLogo}\\[0.5\baselineskip]
-            \companyName{}\\
-            \companyPlace{}\\
-        \end{flushright}
-    \end{minipage}\\[3.0\baselineskip]
+% Remerciements
+\import{./frontmatter/}{remerciements.tex}\clearpage{}
 
-    \centering
-    {\large \reportType}\\[1.0\baselineskip]
-    {\Large \reportTitle}\\[1.5\baselineskip]
-    {\scshape \authorLastName}~\textit{\authorFirstName}\\[0.5\baselineskip]
-    \href{mailto:\authorEmail}{\authorEmail}\\[3.0\baselineskip]
+% Résumé en Français
+\import{./frontmatter/}{abstract_fr.tex}\clearpage{}
 
-    \vfill
+% Résumé en anglais
+\import{./frontmatter/}{abstract_en.tex}\clearpage{}
 
-    \begin{flushleft}
-        \emph{Option}: Informatique\\
-        \emph{Filière}: IoT\\
-        \emph{Métier}: Recherche et Développement\\[2.0\baselineskip]
-    \end{flushleft}
+% Table des matières
+\import{./frontmatter/}{tableofcontents.tex}\clearpage{}\phantomsection{}
 
-    \begin{minipage}{0.4\textwidth}
-        \begin{flushleft}
-            \emph{Tuteur ECL}:\\
-            {\scshape \schoolTutorLastName{}}~\textit{\schoolTutorFirstName{}}\\
-            \href{mailto:\schoolTutorEmail}{\schoolTutorEmail}\\
-        \end{flushleft}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.4\textwidth}
-        \begin{flushright}
-            \emph{Tuteur Entreprise}: \\
-            {\scshape \companyTutorLastName{}}~\textit{\companyTutorFirstName{}}\\
-            \href{mailto:\companyTutorEmail}{\companyTutorEmail}\\
-        \end{flushright}
-    \end{minipage}\\[2.0\baselineskip]
-\end{titlepage}
+% Table des figures
+\import{./frontmatter/}{listoffigures.tex}\clearpage{}\phantomsection{}
 
-\tableofcontents{} % Make the Table of Contents
-\listoffigures{} % Make the List of Figures
-\import{./nomenclature/}{nomenclature.tex}
+% Liste des codes sources
+\import{./frontmatter/}{listoflistings.tex}\clearpage{}\phantomsection{}
+
+% Nomenclature
+\import{./frontmatter/}{nomenclature.tex}\clearpage{}
+
+% Add some separation for the table of contents
+\addtocontents{toc}{\protect\vskip2em}
 % =============================================================
 
 
 % =============================================================
 % MAIN MATTER
 % =============================================================
-\mainmatter%
+\thispagestyle{mainmatterstyle}\pagestyle{mainmatterstyle}
+\mainmatter{}
+\clearpage{}
 
+% Introduction
 \import{./introduction/}{introduction.tex}
 
-\import{./chap1/}{chap1.tex}
+\import{./}{plan.tex}
 
-\import{./chap2/}{chap2.tex}
+% \import{./chap1/}{chap1.tex}
 
+% \import{./chap2/}{chap2.tex}
+
+% Conclusion
 \import{./conclusion/}{conclusion.tex}
 
+% Add some separation for the table of contents
+\addtocontents{toc}{\protect\vskip2em}
 % =============================================================
 
 
 % =============================================================
-% APPENDICES
+% ANNEXES
 % =============================================================
-\begin{appendices}
 \import{./appendix/}{appendix.tex}
-\end{appendices}
+
+% Add some separation for the table of contents
+\addtocontents{toc}{\protect\vskip2em}
 % =============================================================
 
 
 % =============================================================
-% BLACK MATTER
+% BIBLIOGRAPHIE
 % =============================================================
+\thispagestyle{frontmatterstyle}\pagestyle{frontmatterstyle}
+\backmatter{}
+\clearpage{}
+
 % Bibliography
-\backmatter%
-\newpage
 \printbibliography[
-    heading=bibintoc
+    heading=bibliography
 ]
 % =============================================================
 

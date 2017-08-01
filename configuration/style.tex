@@ -1,0 +1,353 @@
+% =============================================================
+% Text Format
+% =============================================================
+\setstretch{1.2} % value for line spacing
+\setlength{\parindent}{0em} % value for paragraph indentation
+\clubpenalty=10000 % prevent single lines at the beginning of a paragraph (Schusterjungen)
+\widowpenalty=10000 % prevent single lines at the end of a paragraph (Hurenkinder)
+\displaywidowpenalty=10000 %
+\interdisplaylinepenalty=2500 %
+
+\newcommand{\tgherosfont}{\fontfamily{qhv}\selectfont}
+% =============================================================
+
+
+% =============================================================
+% Geometry
+% =============================================================
+\usepackage[               % page layout modifications
+    paper=a4paper,         % use A4 paper size
+    includehead,           % include header space
+    includefoot,           % include footer space
+    includemp,             % include side note space
+    bindingoffset=0.5cm,   % binding correction
+    top=2.25cm,            % total body: top margin
+    left=3.75cm,           % total body: left margin (odd pages)
+    right=0.75cm,          % total body: right margin (odd pages)
+    bottom=1.5cm,          % total body: bottom margin
+    % headheight=20pt,       % use because of the fancyhdr package
+    marginparwidth=1.75cm, % width for side note
+    marginparsep=10pt,     % space between notes and body text (content)
+    footskip=2cm           % footer skip size
+]{geometry}
+
+% \usepackage{showframe}     % use to show the frame
+% =============================================================
+
+
+% =============================================================
+% Chapter/Section style
+% =============================================================
+\usepackage{titlesec} % Used to customize capter/section style
+
+\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
+\captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
+
+\makeatletter
+% \titleformat%
+%     {\chapter}% command
+%     [display]% shape
+%     {\bfseries\Large\itshape}% format
+%     {% TODO: faire un titre un peu plus jolie
+%         \rule{\textwidth}{1pt}
+%         \ifnum\pdfstrcmp{\@currenvir}{appendices}=0
+%             Annexe~\thechapter.
+%         \else
+%            \@chapapp~\thechapter.
+%         \fi
+%     }% label
+%     {0.5ex}% sep
+%     {
+%         \vspace{1ex}
+%         \centering
+%     }% before-code
+%     [
+%         \vspace{-0.5ex}%
+%         \rule{\textwidth}{1pt}
+%     ]% after-code
+
+% \titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+
+\newcommand\ctformatchapter[1]{\parbox[t]{\dimexpr\textwidth-4em\relax}{\raggedright#1}}
+
+\titleformat%
+    {name=\chapter}% Command
+    [display]% Shape
+    {\Huge}% Format
+    {%
+        \vspace{-8em}%
+        \raggedleft{%
+            {\color{colorblack}\rule[-5pt]{2pt}{5cm}}%
+            \hspace{0.5em}%
+            {\def\stackalignment{l}\stackon[18pt]{\color{colorcentrale}\fontsize{60}{60}\selectfont\thechapter}{\normalsize{\textsc{\@chapapp}}}}
+        }\hspace{-1em}%
+    }% Label
+    {-3.1em}% Sep
+    {\ctformatchapter}% Before Code
+    [\phantomsection]% After Code
+
+\titleformat%
+    {name=\chapter, numberless}% Command
+    [display]% Shape
+    {\Huge}% Format
+    {}% label
+    {-6.6em}% Sep
+    {}% Before Code
+    [\phantomsection]% After Code
+
+\titlespacing{\section}{0em}{.75em}{.2em}
+\titleformat{\section}% Command
+    [hang]% Shape
+    {\LARGE}% Format
+    {\color{colorblack}\thesection\hspace*{10pt}}% Label
+    {0pt}% Sep
+    {\raggedright}% Before Code
+    [\phantomsection]% After Code
+
+\makeatother
+
+\titlespacing{\subsection}{0em}{.5em}{0em}%[0pt]
+\titleformat{\subsection}[block]%
+    {\Large}%
+    {\color{colorblack}\thesubsection\hspace*{10pt}}%
+    {0pt}%
+    {\raggedright}%
+    [\phantomsection]
+
+\titleformat{\subsubsection}% Command
+    [hang]% Shape
+    {\large}% Format
+    {\color{colorblack}\thesubsubsection\hspace*{10pt}}% Label
+    {0pt}% Sep
+    {\raggedright}% Before Code
+    [\phantomsection]% After Code
+% =============================================================
+
+
+% =============================================================
+% Redefine Rightmark and Leftmark (used for header/footer)
+% =============================================================
+\usepackage{fancyhdr} % Modify Headers and Footers
+\pagestyle{fancy}
+
+\makeatletter
+
+% Used to set \leftmark for the unumered chapters
+\newcommand{\unumeredchaptermark}[1]{
+	\markboth{\footnotesize{\color{colorcentrale}\textsc{#1}}}{}%
+}
+
+\renewcommand{\chaptermark}[1]{%
+	\markboth{%
+		\footnotesize%
+		{\color{colorblack}\textbf{\@chapapp\ \thechapter}}%
+		\quad%
+		{\color{colorcentrale}\textsc{#1}}%
+	}{}%
+}
+
+\renewcommand{\sectionmark}[1]{%
+    \markright{%
+        \footnotesize%
+        {\color{colorblack}\textbf{\thesection}}%
+        \quad%
+        {\color{colorcentrale}\textsc{#1}}%
+    }
+}
+\makeatother
+% =============================================================
+
+% =============================================================
+% Headers and Footers
+% =============================================================
+
+%                                  Chapter should start here
+% 
+%             Even                            Odd
+%   %-----------------------%      %-----------------------%
+%   | LE       CE        RE |      | LO       CO        RO | <= Header
+%   |                       |      |                       |
+%   .                       .      .                       .
+%   .                       .      .                       .
+%   .                       .      .                       .
+%   |                       |      |                       |
+%   | LE       CE        RE |      | LO       CO        RO | <= Footer
+%   %-----------------------%      %-----------------------%
+%     ^        ^         ^           ^        ^         ^
+%    Left    Center    Right        Left    Center    Right
+
+
+% Page style for the Front Matter
+\fancypagestyle{frontmatterstyle}{
+    \fancyhf{} % Clear all header fields
+    \pagestyle{fancy}
+
+    % Header
+    \fancyhead[LE,RO]{}
+    \fancyhead[CE,CO]{}
+    \fancyhead[RE,LO]{}
+
+    % Footer
+    \fancyfootoffset[RE,LO]{1cm}
+    \fancyfoot[CE,CO]{}
+    \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
+    \fancyfoot[LE]{%
+        \footnotesize%
+        \begin{minipage}[b]{1.5cm}%
+            \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+        \footnotesize%
+        \hspace*{10pt}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{0.75cm}\leftmark%
+    }
+    \fancyfoot[RO]{%
+        {\ }\footnotesize%
+        \leftmark%
+        \hspace*{0.75cm}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{10pt}\begin{minipage}[b]{1.5cm}%
+            \color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+    }
+
+    % Rulers
+    \renewcommand{\headrulewidth}{0.0pt}
+    \renewcommand{\footrulewidth}{0.0pt}
+}
+
+
+% Page style for the First chapter pages and for tableofcontents
+\fancypagestyle{plain}{
+    \fancyhf{} % Clear all header fields
+    \pagestyle{fancy}
+
+    % Header
+    \fancyhead[LE,RO]{}
+    \fancyhead[CE,CO]{}
+    \fancyhead[RE,LO]{}
+
+    % Footer
+    \fancyfootoffset[RE,LO]{1cm}
+    \fancyfoot[CE,CO]{}
+    \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
+    \fancyfoot[LE]{%
+        \begin{minipage}[b]{1.5cm}%
+            \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+        \footnotesize%
+        \hspace*{10pt}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{0.75cm}\leftmark%
+    }
+    \fancyfoot[RO]{%
+        {\ }\footnotesize%
+        \leftmark%
+        \hspace*{0.75cm}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{10pt}\begin{minipage}[b]{1.5cm}%
+            \color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+    }
+
+    % Rulers
+    \renewcommand{\headrulewidth}{0.0pt}
+    \renewcommand{\footrulewidth}{0.0pt}
+}
+
+% Page style for the Main Matter
+\fancypagestyle{mainmatterstyle}{
+    \fancyhf{} % Clear all header fields
+    \pagestyle{fancy}
+
+    % Header
+    \fancyhead[LE,RO]{}
+    \fancyhead[CE,CO]{}
+    \fancyhead[RE,LO]{}
+
+    % Footer
+    \fancyfootoffset[RE,LO]{1cm}
+    \fancyfoot[CE,CO]{}
+    \fancyfoot[RE,LO]{}
+    \fancyfoot[LE]{%
+        \footnotesize%
+        \begin{minipage}[b]{1.5cm}%
+            \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+        \footnotesize%
+        \hspace*{10pt}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{0.75cm}\rightmark%
+    }
+    \fancyfoot[RO]{%
+        {\ }\footnotesize%
+        \leftmark%
+        \hspace*{0.75cm}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{10pt}\begin{minipage}[b]{1.5cm}%
+            \color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+    }
+
+    % Rulers
+    \renewcommand{\headrulewidth}{0.0pt}
+    \renewcommand{\footrulewidth}{0.0pt}
+}
+
+% Page style for the Appendices Matter
+\fancypagestyle{appendicesmatterstyle}{
+    \fancyhf{} % Clear all header fields
+    \pagestyle{fancy}
+
+    % Header
+    \fancyhead[LE,RO]{}
+    \fancyhead[CE,CO]{}
+    \fancyhead[RE,LO]{}
+
+    % Footer
+    \fancyfootoffset[RE,LO]{1cm}
+    \fancyfoot[CE,CO]{}
+    \fancyfoot[RE,LO]{}
+    \fancyfoot[LE]{%
+        \footnotesize%
+        \begin{minipage}[b]{1.5cm}%
+            \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+        \footnotesize%
+        \hspace*{10pt}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{0.75cm}\leftmark%
+    }
+    \fancyfoot[RO]{%
+        {\ }\footnotesize%
+        \leftmark%
+        \hspace*{0.75cm}{\color{colorblack}\rule[-90pt]{1.25pt}{100pt}}%
+        \hspace*{10pt}\begin{minipage}[b]{1.5cm}%
+            \color{colorblack}\normalsize\textbf{\thepage}%
+        \end{minipage}%
+    }
+
+    % Rulers
+    \renewcommand{\headrulewidth}{0.0pt}
+    \renewcommand{\footrulewidth}{0.0pt}
+}
+
+% Redefine Chapter command to put plain page style by default
+\makeatletter
+\renewcommand\chapter{\clearpage
+                    \thispagestyle{plain}
+                    \global\@topnum\z@
+                    \@afterindentfalse%
+                    \secdef\@chapter\@schapter}
+\makeatother
+% =============================================================
+
+
+% =============================================================
+% Section Numbering
+% =============================================================
+% % Remove chapter number from section number
+% \makeatletter
+% \@addtoreset{section}{chapter}
+% \makeatother
+% \makeatletter
+% \renewcommand{\thesection}{\@arabic\c@section}
+% \makeatother
+
+% % Should number subsubsection
+% \setcounter{secnumdepth}{4}
+% =============================================================
+

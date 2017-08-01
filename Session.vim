@@ -2,76 +2,40 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Downloads/rapport_preliminaire/rapport-tfe-asygn
+cd ~/Downloads/documents/rapport-tfe-asygn
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +160 main.tex
-badd +1 ~/Downloads/rapport_preliminaire/rapport-tfe-asygn
-badd +1 gyroscope/A_fonct_meca/bode_dut_k.tikz
-badd +41 gyroscope/A_fonct_meca/fonct_meca.tex
-badd +11 style.tex
-badd +5 nomenclature.tex
-badd +18 Makefile
-badd +1 rapport.sty
-badd +1 main.aux
-badd +1 main.bib
-badd +20 gyroscope/B_exci_detect/exci_detect.tex
-badd +1 introduction/introduction.tex
-badd +9 chap1/chap1.tex
-badd +6 chap2/chap2.tex
-badd +0 gyroscope/A_fonct_meca/fonct_meca.tex
-badd +9 chap1/gyroscope/gyroscope.tex
-badd +17 chap1/elec_architecture/elec_architecture.tex
-badd +9 chap1/effet_temperature/effet_temperature.tex
-badd +7 chap1/control/control.tex
-badd +73 chap1/elec_architecture/A_electronique/electronique.tex
-badd +4 conclusion/conclusion.tex
-badd +190 chap1/gyroscope/A_fonct_meca/fonct_meca.tex
-badd +40 chap1/gyroscope/B_exci_detect/exci_detect.tex
-badd +27 chap1/elec_architecture/B_architecture/architecture.tex
-badd +18 chap1/elec_architecture/C_PLL/PLL.tex
-badd +40 chap1/effet_temperature/A_temp_gyro/temp_gyro.tex
-badd +50 chap1/effet_temperature/B_temp_elec/temp_elec.tex
-badd +29 chap1/control/A_PLL_AGC/PLL_AGC.tex
-badd +61 chap1/control/C_one_time_sweep/one_time_sweep.tex
-badd +16 chap1/control/E_adaptive_control/adaptive_control.tex
-badd +4 appendix/appendix.tex
+badd +20 main.tex
+badd +2467 main.log
+badd +12 frontmatter/abstract_fr.tex
+badd +2 appendix/appendix.tex
+badd +80 configuration/style.tex
+badd +13 configuration/comon_packages.tex
+badd +4 appendix/A-mathematics/A-mathematics.tex
+badd +4 frontmatter/listoflistings.tex
+badd +4 introduction/introduction.tex
+badd +8 frontmatter/listoffigures.tex
+badd +1 frontmatter
+badd +30 frontmatter/nomenclature.tex
+badd +2 frontmatter/tableofcontents.tex
+badd +55 configuration/variables.tex
+badd +18 configuration/bibliography.tex
+badd +32 plan.tex
+badd +7 frontmatter/remerciements.tex
 badd +1 nomenclature.tex.aux
-badd +0 nomenclature/nomenclature.tex
-badd +29 chap1/control/E_adaptive_control/adaptive_control.tikz
-badd +21 chap1/elec_architecture/B_architecture/open_loop_frequency.tikz
-badd +2 chap1/elec_architecture/C_PLL/PLL.tikz
-badd +0 chap1/elec_architecture/C_PLL/elect_phase.tikz
-badd +43 Session.vim
-badd +9 chap1/1-gyroscope/gyroscope.tex
-badd +1 appendix/A-mathematics/A-mathematics.tex
-badd +10 appendix/B-hinfiny/B-hinfiny.tex
-badd +11 chap1/2-elec-architecture/C_PLL/elect_phase.tikz
-badd +18 chap1/3-effet-temperature/A_temp_gyro/temp_gyro.tex
-badd +50 chap1/4-control/C_one_time_sweep/one_time_sweep.tex
-badd +45 chap1/3-effet-temperature/B_temp_elec/temp_elec.tex
-badd +18 chap1/2-elec-architecture/C_PLL/PLL.tex
-badd +173 chap1/1-gyroscope/A_fonct_meca/fonct_meca.tex
-badd +26 chap1/1-gyroscope/A_fonct_meca/bode_dut_sys_overview.tikz
-badd +18 chap1/3-effet-temperature/B_temp_elec/loss_mag_phase_drift_percentage_zoom.tikz
-badd +14 chap1/2-elec-architecture/A_electronique/electronique.tex
-badd +0 chap1/2-elec-architecture/A_electronique/charge_amplifier.tikz
-badd +21 chap1/4-control/E_adaptive_control/adaptive_control.tex
-badd +28 chap1/4-control/B_synthese_correcteurs/synthese_correcteurs.tex
-badd +23 chap1/1-gyroscope/B_exci_detect/exci_detect.tex
-badd +12 chap1/4-control/A_PLL_AGC/PLL_AGC.tex
-badd +41 chap1/4-control/D_rejet_temperature/rejet_temperature.tex
-badd +54 chap1/1-gyroscope/C_non_idealities/non_idealities.tex
-badd +3298 main.log
+badd +3 frontmatter/abstract_en.tex
+badd +27 configuration/nomenclature.tex
+badd +37 titlepage/titlepage.tex
+badd +1 ~/Downloads/documents/rapport-tfe-asygn
+badd +4 main.bib
+badd +7 readme.md
 argglobal
 silent! argdel *
 argadd main.tex
-edit chap1/4-control/B_synthese_correcteurs/synthese_correcteurs.tex
+edit configuration/style.tex
 set splitbelow splitright
-set nosplitbelow
-set nosplitright
 wincmd t
 set winminheight=1 winminwidth=1 winheight=1 winwidth=1
 argglobal
@@ -83,13 +47,13 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 17 - ((12 * winheight(0) + 19) / 39)
+let s:l = 350 - ((55 * winheight(0) + 30) / 60)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-17
-normal! 018|
-lcd ~/Downloads/rapport_preliminaire/rapport-tfe-asygn
+350
+normal! 029|
+lcd ~/Downloads/documents/rapport-tfe-asygn
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

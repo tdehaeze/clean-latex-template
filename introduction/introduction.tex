@@ -1,38 +1,7 @@
-\chapter*{Introduction}
+\chapter*{Introduction}%
 \label{sec:introduction}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}
+\unumeredchaptermark{Introduction}
 
-% Introduction sur les micro-systèmes inertiels - utilité - avantages
-Les micro-systèmes inertiels sont des systèmes directement intégrés sur des puces de silicium. Ils comportent une partie mécanique et une partie électronique.
+\blindtext{}
 
-Ces micro-systèmes ont de nombreux avantages comparé à leurs homologues \textit{macro}. En effet, l'utilisation de la technologie de la micro-électronique les rendent généralement moins coûteux, peu consommateur d'énergie et facilement produits en masse.
-
-Ils sont ainsi utilisés dans de nombreux domaines tels que l'automobile, les smart-phones, la médecine ou la robotique.\\
-
-% Problématiques - marges de fabrication
-Cependant, du fait de leurs petites dimensions, ces micro-systèmes sont généralement très sensibles aux marges de fabrication, et nécessitent une grande précision, aussi bien sur la partie mécanique que sur la partie électronique.
-
-De plus ils présentent de nombreuses non-idéalités (couplages, non linéarités, bruit important, sensibilité à l'environnement) qui peuvent être traitées par des techniques de contrôle.\\
-
-% Micro-Gyroscope Capacitif - recherches sur le design et l'électronique
-Dans le cas du micro-gyroscope capacitif, de nombreuses recherches ont étés effectuées aussi bien sur l'architecture mécanique que sur l'électronique de lecture et de commande afin de prévenir et de limiter un maximum de non-idéalités.\\
-
-% Nous on s'intéresse au contrôle drive mode
-Dans cet article, nous nous intéressons plus précisément au contrôle du mode primaire de ces micro-gyroscopes capacitifs. Cette problématique de contrôle est crucial dans l'obtention de bonnes performances.
-
-% Problématique pour le drive mode - Objectif
-L'objectif est de faire vibrer une masse selon un mode primaire avec l'amplitude la plus grande et constante possible (en restant dans un fonctionnement linéaire), tout en consommant le moins d'énergie possible et en étant le plus robuste aux tolérances de fabrications et aux conditions d'utilisation.\\
-
-% D'autres techniques de contrôle utilisé (sense mode)
-Des techniques de contrôle sont également utilisés sur le mode secondaire des micro-gyroscopes, mode dont la mesure de l'amplitude de vibration est l'image de la rotation angulaire. Par exemple, la mesure de se mode secondaire peut se faire en boucle fermée pour augmenter la zone de linéarité et la bande passante, d'autres techniques permettent le réglages des fréquences de résonances des deux modes de telles sorte qu'elles s'égalisent, ceci ayant pour effet d'augmenter la sensibilité du capteur.\\
-
-
-% Présentation du plan de l'article
-Cet article se décompose de la manière suivante.
-
-Partie~\ref{sec:gyroscope} sera présentée le fonctionnement du micro-gyroscope inertiel capacitif. Cela comprend le système mécanique, les méthodes d'excitation et de détection du déplacement de la masse vibrante, ainsi que les différentes non-idéalités présentes dans le système.
-
-Dans la partie~\ref{sec:elec_architecture}, on s'intéressera à l'électronique de contrôle et de lecture, puis à l'architecture du système, et finalement à la boucle à verrouillage de phase, méthode de contrôle très utilisée dans le contrôle des micro-capteurs inertiels.
-
-Suivra une rapide introduction (partie~\ref{sec:effet_temperature}) de l'effet de la température sur le résonateur ainsi que sur l'électronique accompagnés des problématiques engendrées par cela.
-
-Finalement, les différentes méthodes de contrôle du résonateur primaire des micro-gyroscopes capacitifs seront exposées (partie~\ref{sec:control}).
