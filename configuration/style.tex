@@ -12,6 +12,7 @@
 % =============================================================
 
 
+
 % =============================================================
 % Geometry
 % =============================================================
@@ -35,6 +36,7 @@
 % =============================================================
 
 
+
 % =============================================================
 % Chapter/Section style
 % =============================================================
@@ -44,57 +46,70 @@
 \captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
 
 \makeatletter
-% \titleformat%
-%     {\chapter}% command
-%     [display]% shape
-%     {\bfseries\Large\itshape}% format
-%     {% TODO: faire un titre un peu plus jolie
-%         \rule{\textwidth}{1pt}
-%         \ifnum\pdfstrcmp{\@currenvir}{appendices}=0
-%             Annexe~\thechapter.
-%         \else
-%            \@chapapp~\thechapter.
-%         \fi
-%     }% label
-%     {0.5ex}% sep
-%     {
-%         \vspace{1ex}
-%         \centering
-%     }% before-code
-%     [
-%         \vspace{-0.5ex}%
-%         \rule{\textwidth}{1pt}
-%     ]% after-code
+% Chapter Style
+\iftoggle{fancychapter}{%
+    \newcommand\ctformatchapter[1]{\parbox[t]{\dimexpr\textwidth-4em\relax}{\raggedright#1}}
+    \titleformat%
+        {name=\chapter}% Command
+        [display]% Shape
+        {\Huge}% Format
+        {%
+            \vspace{-8em}%
+            \raggedleft{%
+                {\color{colorblack}\rule[-5pt]{2pt}{5cm}}%
+                \hspace{0.5em}%
+                {\def\stackalignment{l}\stackon[18pt]{\color{maincolor}\fontsize{60}{60}\selectfont\thechapter}{\normalsize{\textsc{\@chapapp}}}}
+            }\hspace{-1em}%
+        }% Label
+        {-3.1em}% Sep
+        {\ctformatchapter}% Before Code
+        [\phantomsection]% After Code
 
-% \titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+    \titleformat%
+        {name=\chapter, numberless}% Command
+        [display]% Shape
+        {\Huge}% Format
+        {}% label
+        {-6.6em}% Sep
+        {}% Before Code
+        [\phantomsection]% After Code
+    % titlespacing{\command}{left-sep}{before-sep}{after-sep}[right-sep]
+    \titlespacing{name=\chapter}{0em}{2em}{3em}%
+    \titlespacing{name=\chapter, numberless}{0em}{5em}{3em}%
+}{%
+    \titleformat%
+        {name=\chapter}% command
+        [display]% shape
+        {\bfseries\LARGE\itshape}% format
+        {%
+            \rule{\textwidth}{1pt}
+            \@chapapp~\thechapter.
+        }% label
+        {0.5ex}% sep
+        {
+            \vspace{-0.1em}
+            \centering
+        }% before-code
+        [
+            \vspace{-0.3em}%
+            \rule{\textwidth}{1pt}
+        ]% after-code
+    \titleformat%
+        {name=\chapter, numberless}% Command
+        [display]% Shape
+        {\Huge}% Format
+        {}% label
+        {-6.6em}% Sep
+        {}% Before Code
+        [\phantomsection]% After Code
 
-\newcommand\ctformatchapter[1]{\parbox[t]{\dimexpr\textwidth-4em\relax}{\raggedright#1}}
+    \titlespacing{name=\chapter}{0pt}{-2.5em}{1em}%
+    \titlespacing{name=\chapter, numberless}{0pt}{5em}{1em}%
 
-\titleformat%
-    {name=\chapter}% Command
-    [display]% Shape
-    {\Huge}% Format
-    {%
-        \vspace{-8em}%
-        \raggedleft{%
-            {\color{colorblack}\rule[-5pt]{2pt}{5cm}}%
-            \hspace{0.5em}%
-            {\def\stackalignment{l}\stackon[18pt]{\color{colorcentrale}\fontsize{60}{60}\selectfont\thechapter}{\normalsize{\textsc{\@chapapp}}}}
-        }\hspace{-1em}%
-    }% Label
-    {-3.1em}% Sep
-    {\ctformatchapter}% Before Code
-    [\phantomsection]% After Code
+}
 
-\titleformat%
-    {name=\chapter, numberless}% Command
-    [display]% Shape
-    {\Huge}% Format
-    {}% label
-    {-6.6em}% Sep
-    {}% Before Code
-    [\phantomsection]% After Code
 
+% Section Style
 \titlespacing{\section}{0em}{.75em}{.2em}
 \titleformat{\section}% Command
     [hang]% Shape
@@ -104,8 +119,8 @@
     {\raggedright}% Before Code
     [\phantomsection]% After Code
 
-\makeatother
 
+% Subsection Style
 \titlespacing{\subsection}{0em}{.5em}{0em}%[0pt]
 \titleformat{\subsection}[block]%
     {\Large}%
@@ -114,6 +129,7 @@
     {\raggedright}%
     [\phantomsection]
 
+% Subsubsection Style
 \titleformat{\subsubsection}% Command
     [hang]% Shape
     {\large}% Format
@@ -121,7 +137,10 @@
     {0pt}% Sep
     {\raggedright}% Before Code
     [\phantomsection]% After Code
+
+\makeatother
 % =============================================================
+
 
 
 % =============================================================
@@ -134,7 +153,7 @@
 
 % Used to set \leftmark for the unumered chapters
 \newcommand{\unumeredchaptermark}[1]{
-	\markboth{\footnotesize{\color{colorcentrale}\textsc{#1}}}{}%
+	\markboth{\footnotesize{\color{maincolor}\textsc{#1}}}{}%
 }
 
 \renewcommand{\chaptermark}[1]{%
@@ -142,7 +161,7 @@
 		\footnotesize%
 		{\color{colorblack}\textbf{\@chapapp\ \thechapter}}%
 		\quad%
-		{\color{colorcentrale}\textsc{#1}}%
+		{\color{maincolor}\textsc{#1}}%
 	}{}%
 }
 
@@ -151,11 +170,13 @@
         \footnotesize%
         {\color{colorblack}\textbf{\thesection}}%
         \quad%
-        {\color{colorcentrale}\textsc{#1}}%
+        {\color{maincolor}\textsc{#1}}%
     }
 }
 \makeatother
 % =============================================================
+
+
 
 % =============================================================
 % Headers and Footers

@@ -11,8 +11,7 @@
 
 \usepackage{import}  % Used to import .tex files
 
-\usepackage[lofdepth]{subfig} % Subfigures
-\usepackage{wrapfig}          % Wrap text around figure
+\usepackage{wrapfig} % Wrap text around figure
 
 \usepackage{amsmath}   % Main math Package
 \usepackage{mathtools} % Extension package to amsmath
@@ -22,7 +21,7 @@
 \usepackage{steinmetz} % For phase symbol
 
 \usepackage{xstring}  % Utils to manipulate strings
-\usepackage{ifthen}   % Add basic if/then
+\usepackage{etoolbox} % Add basic if/then
 \usepackage{esvect}   % Beautyfull vectors
 \usepackage{graphicx} % Enhanced support for graphics
 \usepackage{grffile}  % Used by matlab2tikz
@@ -33,7 +32,6 @@
 \usepackage{enumitem}  % for simple list modifications
 \usepackage{blindtext} % package for blind text
 \usepackage{booktabs}  % better table support
-% \usepackage{fullpage}
 
 \usepackage{stackengine}
 
@@ -60,7 +58,7 @@
 % =============================================================
 % Source Code
 % =============================================================
-\usepackage{minted}
+\usepackage[outputdir=out,cache=false]{minted}
 
 \renewcommand{\listingscaption}{Code source}
 \renewcommand{\listoflistingscaption}{Liste des codes sources}
@@ -95,12 +93,47 @@
 % =============================================================
 % Caption
 % =============================================================
-\usepackage[                                   % modify figure and table captions
-    font={small},                              % small font size
-    labelfont={bf,sf,color=colorblue},         % label in bold, sans-serif and magenta
-    labelsep=endash,                           % separator: none, colon, period, space, quad, newline, endash
-    singlelinecheck=false                      % no centered single-lined captions
-]{caption}
-% =============================================================
+\usepackage{caption}
+\usepackage{subcaption}
 
+\DeclareCaptionLabelFormat{r-parens}{(\textbf{#2})} % Define our custom label
+
+\captionsetup[listing]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+}
+
+\captionsetup[table]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+}
+
+\captionsetup[figure]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+}
+
+\captionsetup[subfigure]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+    singlelinecheck=false,%
+    labelformat=r-parens,%
+}
+% =============================================================
 

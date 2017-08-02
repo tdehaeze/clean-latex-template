@@ -50,7 +50,9 @@
 \definecolor{colorcyan}{rgb}{0.3010, 0.7450, 0.9330}
 \definecolor{colorbordeau}{rgb}{0.6350, 0.0780, 0.1840}
 
-\definecolor{colorcentrale}{RGB}{89, 9, 38}
+% Main color
+\definecolor{maincolor}{RGB}{89, 9, 38}
+\definecolor{secondcolor}{RGB}{20, 9, 89}
 % =============================================================
 
 
@@ -63,14 +65,23 @@
     pdfsubject={\reportSubject},% subject (PDF meta)
     pdfcreator={\reportAuthor}, % creator (PDF meta)
     plainpages=false,           %
-    colorlinks=false,           % colorize links?
     pdfborder={0 0 0},          %
     breaklinks=true,            % allow line break inside links
     bookmarksnumbered=true,     %
     bookmarksopen=true,         %
+    colorlinks=true,            % colorize links?
+    allcolors=colorblack,%
 ]{hyperref}
 
 \providecommand\phantomsection{} % TODO: explain
 % =============================================================
 
+
+% =============================================================
+% Some variable to customize theme
+% =============================================================
+% toogletrue to have a "fancy chapter" tooglefalse to don't
+\newtoggle{fancychapter}
+\toggletrue{fancychapter}
+% =============================================================
 

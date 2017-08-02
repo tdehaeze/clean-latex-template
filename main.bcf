@@ -2123,6 +2123,9 @@
   <bcf:section number="0">
     <bcf:citekey order="0">*</bcf:citekey>
     <bcf:citekey order="1">Amendola2017</bcf:citekey>
+    <bcf:citekey order="2">Petkov2005</bcf:citekey>
+    <bcf:citekey order="2">Raman2009</bcf:citekey>
+    <bcf:citekey order="2">Colinet2004</bcf:citekey>
   </bcf:section>
   <bcf:sortlist section="0" name="none/global/" type="entry" sortscheme="none" sortnamekeyscheme="global" labelprefix="">
   <bcf:sorting>

@@ -7,7 +7,6 @@
 \usepackage{circuitikz}       % Draw electronic circuits
 \usepackage{pgfpages}         % Needed to use notes
 \usepackage{pgfplots}         % Used to plot functions
-\usepackage{pgfshape_control} % Custom Tikz shapes
 
 \usetikzlibrary{calc}
 \usetikzlibrary{arrows.meta}
@@ -23,29 +22,10 @@
 
 \usepgfplotslibrary{patchplots}
 
-\tikzset{%
-    font={\small},% Set all font to small size
-    do path picture/.style={%
-        path picture={%
-            \pgfpointdiff{\pgfpointanchor{path picture bounding box}{south west}}%
-            {\pgfpointanchor{path picture bounding box}{north east}}%
-            \pgfgetlastxy\x\y%
-            \tikzset{x=\x/2,y=\y/2}%
-            #1
-        }
-    },
-    sin wave/.style={do path picture={    
-        \draw[line cap=round] (-3/4,0)
-        sin (-3/8,1/2) cos (0,0) sin (3/8,-1/2) cos (3/4,0);
-    }},
-    >=latex
-}
-
 \pgfplotsset{compat=newest}
 \pgfplotsset{plot coordinates/math parser=false}
 
 \newlength\fheight%
 \newlength\fwidth%
 % =============================================================
-
 

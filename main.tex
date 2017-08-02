@@ -13,7 +13,7 @@
 
 
 % =============================================================
-% INPUT CONFIGURATION FILES
+% CONFIGURATION FILES
 % =============================================================
 \input{./configuration/comon_packages.tex}
 \input{./configuration/variables.tex}
@@ -21,6 +21,9 @@
 \input{./configuration/tikz.tex}
 \input{./configuration/bibliography.tex}
 \input{./configuration/nomenclature.tex}
+
+% You can add your own package/configuration here
+\input{./configuration/custom_packages.tex}
 % =============================================================
 
 
@@ -33,61 +36,58 @@
 \nocite{*}
 
 % =============================================================
+% TITLE PAGE
+% =============================================================
+\subimport*{./titlepage/}{titlepage.tex}
+% =============================================================
+
+
+% =============================================================
 % FRONT MATTER
 % =============================================================
-% Title Page
-\import{./titlepage/}{titlepage.tex}
-
-% Should be after title page
-\frontmatter{}
-
-% Start Numbering the front matter
-\thispagestyle{frontmatterstyle}\pagestyle{frontmatterstyle}\setcounter{page}{1}
+% Configuration for the front matter
+\input{./configuration/frontmatter.tex}
 
 % Remerciements
-\import{./frontmatter/}{remerciements.tex}\clearpage{}
+\subimport*{./frontmatter/}{remerciements.tex}\clearpage{}
 
 % Résumé en Français
-\import{./frontmatter/}{abstract_fr.tex}\clearpage{}
+\subimport*{./frontmatter/}{abstract_fr.tex}\clearpage{}
 
 % Résumé en anglais
-\import{./frontmatter/}{abstract_en.tex}\clearpage{}
+\subimport*{./frontmatter/}{abstract_en.tex}\clearpage{}
 
 % Table des matières
-\import{./frontmatter/}{tableofcontents.tex}\clearpage{}\phantomsection{}
+\subimport*{./frontmatter/}{tableofcontents.tex}\clearpage{}\phantomsection{}
 
 % Table des figures
-\import{./frontmatter/}{listoffigures.tex}\clearpage{}\phantomsection{}
+\subimport*{./frontmatter/}{listoffigures.tex}\clearpage{}\phantomsection{}
 
 % Liste des codes sources
-\import{./frontmatter/}{listoflistings.tex}\clearpage{}\phantomsection{}
+\subimport*{./frontmatter/}{listoflistings.tex}\clearpage{}\phantomsection{}
 
 % Nomenclature
-\import{./frontmatter/}{nomenclature.tex}\clearpage{}
-
-% Add some separation for the table of contents
-\addtocontents{toc}{\protect\vskip2em}
+\subimport*{./frontmatter/}{nomenclature.tex}\clearpage{}
 % =============================================================
 
 
 % =============================================================
 % MAIN MATTER
 % =============================================================
-\thispagestyle{mainmatterstyle}\pagestyle{mainmatterstyle}
-\mainmatter{}
-\clearpage{}
+% Configuration for the main matter
+\input{./configuration/mainmatter.tex}
 
 % Introduction
-\import{./introduction/}{introduction.tex}
+\subimport*{./introduction/}{introduction.tex}
 
-\import{./}{plan.tex}
+% Chapitre 1
+\subimport*{./chap1/}{chap1.tex}
 
-% \import{./chap1/}{chap1.tex}
-
-% \import{./chap2/}{chap2.tex}
+% Chapitre 2
+\subimport*{./chap2/}{chap2.tex}
 
 % Conclusion
-\import{./conclusion/}{conclusion.tex}
+\subimport*{./conclusion/}{conclusion.tex}
 
 % Add some separation for the table of contents
 \addtocontents{toc}{\protect\vskip2em}
@@ -97,16 +97,16 @@
 % =============================================================
 % ANNEXES
 % =============================================================
-\import{./appendix/}{appendix.tex}
-
-% Add some separation for the table of contents
-\addtocontents{toc}{\protect\vskip2em}
+\subimport*{./appendix/}{appendix.tex}
 % =============================================================
 
 
 % =============================================================
 % BIBLIOGRAPHIE
 % =============================================================
+% Add some separation for the table of contents
+\addtocontents{toc}{\protect\vskip2em}
+
 \thispagestyle{frontmatterstyle}\pagestyle{frontmatterstyle}
 \backmatter{}
 \clearpage{}
