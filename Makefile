@@ -28,6 +28,8 @@ endif
 TIKZFILES := $(wildcard ressources/tikz/*.tex) 
 # =============================================================
 
+BUILDDIREXIST := $()
+
 all: main.pdf
 
 # -pdf tells latexmk to generate a PDF instead of DVI.
@@ -40,6 +42,7 @@ all: main.pdf
 # -quiet suppresses most status messages (https://tex.stackexchange.com/questions/40783/can-i-make-latexmk-quieter).
 # -jobname=directory/name used to change to output directory
 main.pdf: main/main.tex
+	mkdir -p main/build && \
 	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -cd -jobname=build/main -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape" -use-make main/main.tex
 
 # The .PHONY rule keeps make from processing a file named "watch" or "clean".

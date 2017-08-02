@@ -12,7 +12,7 @@ You should create one .tex file for each Tikz picture with the standalone class 
     \import{../../configuration/}{comon_packages.tex}%
     \import{../../configuration/}{variables.tex}%
     \import{../../configuration/}{conftikz.tex}%
-    \import{../../configuration/}{custom_packages.tex}%
+    \import{../../configuration/}{custom_config.tex}%
 \fi
 
 \begin{document}
