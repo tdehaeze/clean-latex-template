@@ -14,8 +14,8 @@ all: main.pdf
 # -synctex=1 is required to jump between the source PDF and the text editor.
 # -pvc (preview continuously) watches the directory for changes.
 # -quiet suppresses most status messages (https://tex.stackexchange.com/questions/40783/can-i-make-latexmk-quieter).
-main.pdf: main.tex
-	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape" -use-make main.tex
+main.pdf: main/main.tex
+	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -cd -jobname=build/main -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape" -use-make main/main.tex
 
 # The .PHONY rule keeps make from processing a file named "watch" or "clean".
 .PHONY: watch
@@ -29,5 +29,16 @@ watch: main.pdf
 clean:
 	latexmk -CA -bibtex
 
+UNAME := $(shell uname)
+
+ifeq ($(UNAME), Linux)
+PDFVIEWER = evince
+endif
+
+ifeq ($(UNAME), Darwin)
+PDFVIEWER = open
+endif
+
 open:
-	o main.pdf
+	(${PDFVIEWER} main.pdf &)
+

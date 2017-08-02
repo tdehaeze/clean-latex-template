@@ -17,7 +17,7 @@
 % School
 \newcommand{\schoolName}{\'Ecole Centrale de Lyon}
 \newcommand{\schoolPlace}{\'Ecully}
-\newcommand{\schoolLogo}{./titlepage/logos/logo-ecl.pdf}
+\newcommand{\schoolLogo}{logo-ecl.pdf}
 
 % School Tutor
 \newcommand{\schoolTutorFirstName}{Anton}
@@ -27,7 +27,7 @@
 % Company
 \newcommand{\companyName}{Asygn}
 \newcommand{\companyPlace}{Montbonnot-Saint-Martin}
-\newcommand{\companyLogo}{./titlepage/logos/logo-asygn.pdf}
+\newcommand{\companyLogo}{logo-asygn.pdf}
 
 % Company Tutors
 \newcommand{\companyTutorFirstName}{Christophe}
@@ -37,9 +37,22 @@
 
 
 % =============================================================
+% Graphic Path
+% =============================================================
+\graphicspath{%
+    {../ressources/}%
+    {../ressources/pdf/}%
+    {../ressources/images/}%
+    {../ressources/logos/}%
+    {../ressources/tikz/}%
+}
+% =============================================================
+
+
+% =============================================================
 % Colors
 % =============================================================
-\usepackage{xcolor}   % Color extension
+\usepackage{xcolor}% Color extension
 
 \definecolor{colorblack}{rgb}{0, 0, 0}
 \definecolor{colorblue}{rgb}{0, 0.4470, 0.7410}

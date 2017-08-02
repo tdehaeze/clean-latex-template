@@ -9,7 +9,8 @@
 \usepackage{lmodern} % Latin Modern Font
 \usepackage{gensymb} % Generic symbols for both text and math mode
 
-\usepackage{import}  % Used to import .tex files
+\usepackage{subfiles}   % TODO
+\usepackage{standalone} % TODO
 
 \usepackage{wrapfig} % Wrap text around figure
 
@@ -51,89 +52,6 @@
     detect-all,
     range-phrase=--,
     range-units=single
-}
-% =============================================================
-
-
-% =============================================================
-% Source Code
-% =============================================================
-\usepackage[outputdir=out,cache=false]{minted}
-
-\renewcommand{\listingscaption}{Code source}
-\renewcommand{\listoflistingscaption}{Liste des codes sources}
-
-\providecommand{\listoflistings}{\listof{listing}{\listoflistingscaption}}
-
-\usemintedstyle{autumn}
-
-\newminted{matlab}{
-    linenos=true,
-    tabsize=4,
-    fontsize=\scriptsize,
-    autogobble=true,
-}
-
-\newminted{python}{
-    linenos=true,
-    tabsize=4,
-    fontsize=\scriptsize,
-    autogobble=true,
-}
-
-\newminted{cpp}{
-    linenos=true,
-    tabsize=4,
-    fontsize=\scriptsize,
-    autogobble=true,
-}
-% =============================================================
-
-
-% =============================================================
-% Caption
-% =============================================================
-\usepackage{caption}
-\usepackage{subcaption}
-
-\DeclareCaptionLabelFormat{r-parens}{(\textbf{#2})} % Define our custom label
-
-\captionsetup[listing]{%
-    font={small},%
-    labelfont={bf, sf, color=maincolor},%
-    textfont={it},%
-    labelsep=endash,%
-    format=hang,%
-    justification=raggedright,%
-}
-
-\captionsetup[table]{%
-    font={small},%
-    labelfont={bf, sf, color=maincolor},%
-    textfont={it},%
-    labelsep=endash,%
-    format=hang,%
-    justification=raggedright,%
-}
-
-\captionsetup[figure]{%
-    font={small},%
-    labelfont={bf, sf, color=maincolor},%
-    textfont={it},%
-    labelsep=endash,%
-    format=hang,%
-    justification=raggedright,%
-}
-
-\captionsetup[subfigure]{%
-    font={small},%
-    labelfont={bf, sf, color=maincolor},%
-    textfont={it},%
-    labelsep=endash,%
-    format=hang,%
-    justification=raggedright,%
-    singlelinecheck=false,%
-    labelformat=r-parens,%
 }
 % =============================================================
 

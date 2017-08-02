@@ -1,0 +1,35 @@
+% =============================================================
+% Source Code
+% =============================================================
+\usepackage[outputdir=build]{minted}
+
+\renewcommand{\listingscaption}{Code source}
+\renewcommand{\listoflistingscaption}{Liste des codes sources}
+
+\providecommand{\listoflistings}{\listof{listing}{\listoflistingscaption}}
+
+\usemintedstyle{autumn}
+
+\newminted{matlab}{
+    linenos=true,
+    tabsize=4,
+    fontsize=\scriptsize,
+    autogobble=true,
+}
+
+\newminted{python}{
+    linenos=true,
+    tabsize=4,
+    fontsize=\scriptsize,
+    autogobble=true,
+}
+
+\newminted{cpp}{
+    linenos=true,
+    tabsize=4,
+    fontsize=\scriptsize,
+    autogobble=true,
+}
+% =============================================================
+
+

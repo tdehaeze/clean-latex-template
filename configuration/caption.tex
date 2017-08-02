@@ -1,0 +1,48 @@
+% =============================================================
+% Caption
+% =============================================================
+\usepackage{caption}
+\usepackage{subcaption}
+
+\DeclareCaptionLabelFormat{r-parens}{(\textbf{#2})} % Define our custom label
+
+\captionsetup[listing]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+}
+
+\captionsetup[table]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+}
+
+\captionsetup[figure]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+}
+
+\captionsetup[subfigure]{%
+    font={small},%
+    labelfont={bf, sf, color=maincolor},%
+    textfont={it},%
+    labelsep=endash,%
+    format=hang,%
+    justification=raggedright,%
+    singlelinecheck=false,%
+    labelformat=r-parens,%
+}
+% =============================================================
+
+

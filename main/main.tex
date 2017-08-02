@@ -15,15 +15,17 @@
 % =============================================================
 % CONFIGURATION FILES
 % =============================================================
-\input{./configuration/comon_packages.tex}
-\input{./configuration/variables.tex}
-\input{./configuration/style.tex}
-\input{./configuration/tikz.tex}
-\input{./configuration/bibliography.tex}
-\input{./configuration/nomenclature.tex}
+\input{../configuration/comon_packages.tex}
+\input{../configuration/caption.tex}
+\input{../configuration/sourcecode.tex}
+\input{../configuration/variables.tex}
+\input{../configuration/style.tex}
+\input{../configuration/tikz.tex}
+\input{../configuration/bibliography.tex}
+\input{../configuration/nomenclature.tex}
 
 % You can add your own package/configuration here
-\input{./configuration/custom_packages.tex}
+\input{../configuration/custom_packages.tex}
 % =============================================================
 
 
@@ -32,13 +34,17 @@
 % =============================================================
 \begin{document}
 
+% Define mainfile in order to know if we are compiling
+% the main document of not (standalone class)
+\newcommand{\mainfile}{}
+
 % Should ref all documents from bib
 \nocite{*}
 
 % =============================================================
 % TITLE PAGE
 % =============================================================
-\subimport*{./titlepage/}{titlepage.tex}
+\input{../titlepage/titlepage.tex}
 % =============================================================
 
 
@@ -46,28 +52,28 @@
 % FRONT MATTER
 % =============================================================
 % Configuration for the front matter
-\input{./configuration/frontmatter.tex}
+\input{../configuration/frontmatter.tex}
 
 % Remerciements
-\subimport*{./frontmatter/}{remerciements.tex}\clearpage{}
+\input{../frontmatter/remerciements.tex}\clearpage{}
 
 % Résumé en Français
-\subimport*{./frontmatter/}{abstract_fr.tex}\clearpage{}
+\input{../frontmatter/abstract_fr.tex}\clearpage{}
 
 % Résumé en anglais
-\subimport*{./frontmatter/}{abstract_en.tex}\clearpage{}
+\input{../frontmatter/abstract_en.tex}\clearpage{}
 
 % Table des matières
-\subimport*{./frontmatter/}{tableofcontents.tex}\clearpage{}\phantomsection{}
+\input{../frontmatter/tableofcontents.tex}\clearpage{}\phantomsection{}
 
 % Table des figures
-\subimport*{./frontmatter/}{listoffigures.tex}\clearpage{}\phantomsection{}
+\input{../frontmatter/listoffigures.tex}\clearpage{}\phantomsection{}
 
 % Liste des codes sources
-\subimport*{./frontmatter/}{listoflistings.tex}\clearpage{}\phantomsection{}
+\input{../frontmatter/listoflistings.tex}\clearpage{}\phantomsection{}
 
 % Nomenclature
-\subimport*{./frontmatter/}{nomenclature.tex}\clearpage{}
+\input{../frontmatter/nomenclature.tex}\clearpage{}
 % =============================================================
 
 
@@ -75,29 +81,28 @@
 % MAIN MATTER
 % =============================================================
 % Configuration for the main matter
-\input{./configuration/mainmatter.tex}
+\input{../configuration/mainmatter.tex}
 
 % Introduction
-\subimport*{./introduction/}{introduction.tex}
+\input{../introduction/introduction.tex}
 
 % Chapitre 1
-\subimport*{./chap1/}{chap1.tex}
+\input{../chap1/chap1.tex}
 
 % Chapitre 2
-\subimport*{./chap2/}{chap2.tex}
+\input{../chap2/chap2.tex}
 
 % Conclusion
-\subimport*{./conclusion/}{conclusion.tex}
-
-% Add some separation for the table of contents
-\addtocontents{toc}{\protect\vskip2em}
+\input{../conclusion/conclusion.tex}
 % =============================================================
 
 
 % =============================================================
 % ANNEXES
 % =============================================================
-\subimport*{./appendix/}{appendix.tex}
+% Add some separation for the table of contents
+\addtocontents{toc}{\protect\vskip2em}
+\input{../appendix/appendix.tex}
 % =============================================================
 
 
@@ -117,7 +122,8 @@
 ]
 % =============================================================
 
-
-\end{document}
 % =============================================================
+% END DOCUMENT
+% =============================================================
+\end{document}
 
