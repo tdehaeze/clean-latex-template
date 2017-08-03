@@ -33,73 +33,78 @@ MAINDIRECTORY := $(shell pwd)
 # =============================================================
 # Main builders
 # =============================================================
-all: main.pdf
+all: pdf
 
-main.pdf: main/main.tex
+# PDF
+.PHONY: pdf
+ifeq ($(f),)
+ifeq ($(t), tikz)
+pdf:
+	cd ressources/tikz/ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+else
+pdf:
 	mkdir -p main/build && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_main $(PREVIEW_CONTINUOUSLY) main/main.tex
+endif
+else
+ifeq ($(t), tikz)
+pdf:
+	cd ressources/tikz/ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+else
+pdf:
+	cd $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex $(f)/$(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+endif
+endif
 
-.PHONY: watch
-watch: PREVIEW_CONTINUOUSLY=-pvc
-watch: main.pdf
-
+# CLEAN
 .PHONY: clean
+ifeq ($(f),)
 clean:
 	latexmk -cd -c -bibtex main/build/main.pdf
+else
+clean:
+	cd $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+endif
 
+# OPEN
 .PHONY: open
+ifeq ($(f),)
 open:
 	(${PDFVIEWER} main/build/main.pdf &)
+else
+ifeq ($(t), tikz)
+open:
+	(${PDFVIEWER} ressources/tikz/$(f).pdf &)
+else
+open:
+	(${PDFVIEWER} $(f)/$(f).pdf &)
+endif
+endif
 
-# =============================================================
-# Tikz Standalone files
-# =============================================================
-.PHONY: tikz
-tikz:
-	cd ressources/tikz/ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
-
-.PHONY: tikz-watch
-tikz-watch:
+# WATCH
+.PHONY: watch
+ifeq ($(f),)
+watch:
+	mkdir -p main/build && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_main $(PREVIEW_CONTINUOUSLY) -pvc main/main.tex
+else
+ifeq ($(t), tikz)
+watch:
 	cd ressources/tikz/ && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -pvc $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
-
-# =============================================================
-# Appendix
-# =============================================================
-.PHONY: appendix
-appendix:
-	cd appendix/ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
-
-.PHONY: appendix-watch
-appendix-watch:
-	cd appendix/ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -pvc $(f) && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
-
-# =============================================================
-# Main files
-# =============================================================
-titlepage: titlepage/titlepage.pdf
-introduction: introduction/introduction.pdf
-chap1: chap1/chap1.pdf
-chap2: chap2/chap2.pdf
-chap3: chap3/chap3.pdf
-chap4: chap4/chap4.pdf
-conclusion: conclusion/conclusion.pdf
-
-.PHONY: FORCE_MAKE
-%.pdf: %.tex FORCE_MAKE
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex $< && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $<
-
-.PHONY: f-watch
-f-watch:
+else
+watch:
 	cd $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex -pvc $(f)/$(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+endif
+endif
 
