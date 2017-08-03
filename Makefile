@@ -51,7 +51,6 @@ clean:
 open:
 	(${PDFVIEWER} main/build/main.pdf &)
 
-
 # =============================================================
 # Tikz Standalone files
 # =============================================================
@@ -61,6 +60,7 @@ tikz:
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
 
+.PHONY: tikz-watch
 tikz-watch:
 	cd ressources/tikz/ && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -pvc $(f) && \
@@ -73,6 +73,12 @@ tikz-watch:
 appendix:
 	cd appendix/ && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+
+.PHONY: appendix-watch
+appendix-watch:
+	cd appendix/ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -pvc $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
 
 # =============================================================
@@ -90,4 +96,10 @@ conclusion: conclusion/conclusion.pdf
 %.pdf: %.tex FORCE_MAKE
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex $< && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $<
+
+.PHONY: f-watch
+f-watch:
+	cd $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex -pvc $(f)/$(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
 

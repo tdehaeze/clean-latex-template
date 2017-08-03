@@ -61,8 +61,24 @@ To compile each Tikz figures into pdf, use `make tikz`.
 
 ### Workflow
 
-`make tikz-watch f=filename` to continuously compile a tikz file into a pdf. Open the pdf, make changes to the .tex file until you are happy with the result. Then stop the build with `C-c` and you are good to go.
+`make` - Build the entire project
+`make clean` - Clean the `main/build` directory (should not be used)
+`make watch` - Watch for changes and rebuild the entire project
+`make open` - Open the generated pdf
 
+
+`make tikz` - 
+`make tikz f=filename` - 
+`make tikz-watch f=filename` - continuously compile a tikz file into a pdf. Open the pdf, make changes to the .tex file until you are happy with the result. Then stop the build with `C-c` and you are good to go.
+
+
+`make filename` - Build the subfile located `filename/filename.tex` into `filename/filename.pdf` (`filename` can be `titlepage`, `chap1`, `chap2`, `introduction`, ...)
+`make f-watch f=filename` - Watch the file for changes
+
+
+`make appendix` - 
+`make appendix f=filename` - 
+`make appendix-watch f=filename` - 
 
 ## Troubleshoot
 
@@ -83,11 +99,13 @@ http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf
 - Changer la numérotation pour les section, subsection... (enlever un niveau, et reset à chaque chapitre)
 - Mettre la numérotation des sections dans la marge
 - Refaire bien le fichier de présentation
-- Compléter ce readme avec des exemples et des "snippets"
+- Compléter ce readme
+    - exemples et "snippets"
+    - explication de chaque dossier
 - expliquer les commandes make
 - Peut être plutôt faire un subfile par chapitre
     - ça va permettre de faire un make chap1 ou make chap2 pour compiler qu'il seul chapitre, sinon c'est plus compliquer pour chaque section
 - Ajouter un watch tikz file dans le makefile
-
-
+- Mieux partitionner les packages
+- Peut être faire un dossier pour chaque annexe, comme ça on peut faire des règles dans le makefile plus générales
 
