@@ -1,4 +1,4 @@
-# LaTeX Template
+# Clean LaTeX Template
 
 <!-- vim-markdown-toc GFM -->
 * [Tikz](#tikz)
