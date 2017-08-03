@@ -28,15 +28,18 @@
 \input{../configuration/custom_config.tex}
 % =============================================================
 
+\newcommand{\onlyinsubfile}[1]{#1}
+\newcommand{\notinsubfile}[1]{}
 
 % =============================================================
 % BEGIN DOCUMENT
 % =============================================================
 \begin{document}
 
-% Define mainfile in order to know if we are compiling
-% the main document of not (standalone class)
-\newcommand{\mainfile}{}
+% change onlyinsubfile in order to know if we are compiling
+% the main document of not (subfiles class)
+\renewcommand{\onlyinsubfile}[1]{}
+\renewcommand{\notinsubfile}[1]{#1}
 
 % Should ref all documents from bib
 \nocite{*}
@@ -82,24 +85,16 @@
 % MAIN MATTER
 % =============================================================
 % Introduction
-\subfile{../introduction/introduction.tex}\clearpage{}
+\subfile{../introduction/introduction.tex}\cleardoublepage{}
 
 % Chapitre 1
-\chapter{Titre du chapitre}%
-\label{chap:label-chapitre}
-\subfile{../chap1/eqandfigures.tex}\clearpage{}
-\subfile{../chap1/codesandlistes.tex}\clearpage{}
-% =====================================
+\subfile{../chap1/chap1.tex}\cleardoublepage{}
 
 % Chapitre 2
-\chapter{Titre du deuxième chapitre}%
-\label{chap:label-chapitre-2}
-\subfile{../chap2/paragraphanddivers.tex}\clearpage{}
-\subfile{../chap2/tableandreferences.tex}\clearpage{}
-% =====================================
+\subfile{../chap2/chap2.tex}\cleardoublepage{}
 
 % Conclusion
-\subfile{../conclusion/conclusion.tex}\clearpage{}
+\subfile{../conclusion/conclusion.tex}\cleardoublepage{}
 % =============================================================
 
 
@@ -109,7 +104,11 @@
 % Add some separation for the table of contents
 \addtocontents{toc}{\protect\vskip2em}
 \appendix
+
+% Appendix : Mathematics
 \subfile{../appendix/A-mathematics.tex}\clearpage{}
+
+% Appendix : H Infiny
 \subfile{../appendix/B-hinfiny.tex}\clearpage{}
 % =============================================================
 

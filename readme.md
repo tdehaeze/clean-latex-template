@@ -37,7 +37,7 @@ To include it into your document, just use `\includestandalone` like below.
 \end{figure}
 ```
 
-But it will compile each time you make your main file.
+But it will compile each time you make your main file (and it will not work for subfiles, see Troubleshoot section).
 
 An other solution to speed up the global compilation is to make one pdf file for each Tikz file and then use `\includegraphics`.
 
@@ -52,14 +52,21 @@ An other solution to speed up the global compilation is to make one pdf file for
 
 It will produce the exact same output but with no compilation time.
 
-To produce a pdf file out of the standalone class, use `make tikz filename` where filename is the name of the filename with the standalone class containing your Tikz picture.
+To produce a pdf file out of the standalone class, use `make tikz f=filename` where filename is the name of the filename with the standalone class containing your Tikz picture.
 
 It will create the file `filename.pdf` in the same directory (`ressources/tikz`).
 
-To compile each Tikz figures into pdf, use `make tikz-all`.
+To compile each Tikz figures into pdf, use `make tikz`.
 
 
+### Workflow
 
+`make tikz-watch f=filename` to continuously compile a tikz file into a pdf. Open the pdf, make changes to the .tex file until you are happy with the result. Then stop the build with `C-c` and you are good to go.
+
+
+## Troubleshoot
+
+You can't use `\includestandalone` from a file with the class `subfiles`. So I recommend generating a `pdf` file from the Tikz Standalone file using `make tikz f=filename` and then include the generated pdf using `\includegraphics`.
 
 
 ## Ressources
@@ -71,6 +78,7 @@ http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf
 
 ## TODO
 
+
 - Changer la page de garde pour faire un truc plus général (logo d'entreprise général)
 - Changer la numérotation pour les section, subsection... (enlever un niveau, et reset à chaque chapitre)
 - Mettre la numérotation des sections dans la marge
@@ -79,3 +87,7 @@ http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf
 - expliquer les commandes make
 - Peut être plutôt faire un subfile par chapitre
     - ça va permettre de faire un make chap1 ou make chap2 pour compiler qu'il seul chapitre, sinon c'est plus compliquer pour chaque section
+- Ajouter un watch tikz file dans le makefile
+
+
+

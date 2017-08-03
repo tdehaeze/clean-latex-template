@@ -13,7 +13,6 @@
 # The .PHONY rule keeps make from processing a file named "watch" or "clean".
 # =============================================================
 
-
 # =============================================================
 # Define Some Variables
 # =============================================================
@@ -27,22 +26,15 @@ ifeq ($(UNAME), Darwin)
 PDFVIEWER = open
 endif
 
-TIKZFILES := $(wildcard ressources/tikz/*.tex) 
-
 MAINDIRECTORY := $(shell pwd)
 # =============================================================
 
+
+# =============================================================
+# Main builders
+# =============================================================
 all: main.pdf
 
-# -pdf tells latexmk to generate a PDF instead of DVI.
-# -pdflatex="" tells latexmk to call a specific backend with specific options.
-# -use-make tells latexmk to call make for generating missing files.
-# -interaction=nonstopmode keeps the pdflatex backend from stopping at a
-# missing file reference and interactively asking you for an alternative.
-# -synctex=1 is required to jump between the source PDF and the text editor.
-# -pvc (preview continuously) watches the directory for changes.
-# -quiet suppresses most status messages (https://tex.stackexchange.com/questions/40783/can-i-make-latexmk-quieter).
-# -jobname=directory/name used to change to output directory
 main.pdf: main/main.tex
 	mkdir -p main/build && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_main $(PREVIEW_CONTINUOUSLY) main/main.tex
@@ -59,24 +51,43 @@ clean:
 open:
 	(${PDFVIEWER} main/build/main.pdf &)
 
+
+# =============================================================
+# Tikz Standalone files
+# =============================================================
 .PHONY: tikz
 tikz:
 	cd ressources/tikz/ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(argument) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
 
-.PHONY: tikz-all
-tikz-all: $(TIKZFILES)
+tikz-watch:
 	cd ressources/tikz/ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $^ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $^
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -pvc $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
 
-introduction: introduction/introduction.pdf
-conclusion: conclusion/conclusion.pdf
+# =============================================================
+# Appendix
+# =============================================================
+.PHONY: appendix
+appendix:
+	cd appendix/ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+
+# =============================================================
+# Main files
+# =============================================================
 titlepage: titlepage/titlepage.pdf
+introduction: introduction/introduction.pdf
+chap1: chap1/chap1.pdf
+chap2: chap2/chap2.pdf
+chap3: chap3/chap3.pdf
+chap4: chap4/chap4.pdf
+conclusion: conclusion/conclusion.pdf
 
-.PHONY : FORCE_MAKE
-%.pdf : %.tex FORCE_MAKE
+.PHONY: FORCE_MAKE
+%.pdf: %.tex FORCE_MAKE
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex $< && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $<
 
