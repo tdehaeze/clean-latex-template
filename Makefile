@@ -9,6 +9,8 @@
 # $^ 	La liste des dépendances
 # $? 	La liste des dépendances plus récentes que la cible
 # $* 	Le nom du fichier sans suffixe
+
+# The .PHONY rule keeps make from processing a file named "watch" or "clean".
 # =============================================================
 
 
@@ -26,9 +28,9 @@ PDFVIEWER = open
 endif
 
 TIKZFILES := $(wildcard ressources/tikz/*.tex) 
-# =============================================================
 
-BUILDDIREXIST := $()
+MAINDIRECTORY := $(shell pwd)
+# =============================================================
 
 all: main.pdf
 
@@ -43,28 +45,38 @@ all: main.pdf
 # -jobname=directory/name used to change to output directory
 main.pdf: main/main.tex
 	mkdir -p main/build && \
-	latexmk -quiet -bibtex $(PREVIEW_CONTINUOUSLY) -f -pdf -cd -jobname=build/main -pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -shell-escape" -use-make main/main.tex
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_main $(PREVIEW_CONTINUOUSLY) main/main.tex
 
-# The .PHONY rule keeps make from processing a file named "watch" or "clean".
 .PHONY: watch
-# Set the PREVIEW_CONTINUOUSLY variable to -pvc to switch latexmk into the preview continuously mode
 watch: PREVIEW_CONTINUOUSLY=-pvc
 watch: main.pdf
 
 .PHONY: clean
-# -bibtex also removes the .bbl files (http://tex.stackexchange.com/a/83384/79184).
-
 clean:
-	cd main/build && latexmk -CA -bibtex main.pdf
+	latexmk -cd -c -bibtex main/build/main.pdf
 
+.PHONY: open
 open:
 	(${PDFVIEWER} main/build/main.pdf &)
 
+.PHONY: tikz
 tikz:
-	cd ressources/tikz/ && latexmk -f -pdf -cd -pdflatex="pdflatex -interaction=nonstopmode -shell-escape" -use-make $(argument) && latexmk -c
+	cd ressources/tikz/ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(argument) && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
 
-
+.PHONY: tikz-all
 tikz-all: $(TIKZFILES)
-	cd ressources/tikz/ && latexmk -f -pdf -cd -pdflatex="pdflatex -interaction=nonstopmode -shell-escape" -use-make $^ && latexmk -c
+	cd ressources/tikz/ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $^ && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $^
 
+introduction: introduction/introduction.pdf
+conclusion: conclusion/conclusion.pdf
+titlepage: titlepage/titlepage.pdf
+
+.PHONY : FORCE_MAKE
+%.pdf : %.tex FORCE_MAKE
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex $< && \
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $<
 

@@ -1,0 +1,8 @@
+$pdf_mode                   = 1;
+$do_cd                      = 1;
+$bibtex_use                 = 2;
+$force_mode                 = 1;
+$silent                     = 1;
+$use_make_for_missing_files = 1;
+$pdflatex                   = 'pdflatex -interaction=nonstopmode -synctex=1 -shell-escape';
+$jobname                    = 'build/main'

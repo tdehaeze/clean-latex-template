@@ -66,6 +66,7 @@ To compile each Tikz figures into pdf, use `make tikz-all`.
 
 http://ash.id.au/post/2014/09/19/thesis-in-latex/
 https://github.com/derric/cleanthesis
+http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf
 
 
 ## TODO
@@ -78,5 +79,3 @@ https://github.com/derric/cleanthesis
 - expliquer les commandes make
 - Peut être plutôt faire un subfile par chapitre
     - ça va permettre de faire un make chap1 ou make chap2 pour compiler qu'il seul chapitre, sinon c'est plus compliquer pour chaque section
-- faire un dossier script avec des scripts qui sont appelés par le makefile
-- Faire un make tikz all pour générer tous les .tikz en .pdf

@@ -44,16 +44,15 @@
 % =============================================================
 % TITLE PAGE
 % =============================================================
-\input{../titlepage/titlepage.tex}
+\subfile{../titlepage/titlepage.tex}
 % =============================================================
 
+% Configuration for the front matter
+\input{../configuration/frontmatter.tex}
 
 % =============================================================
 % FRONT MATTER
 % =============================================================
-% Configuration for the front matter
-\input{../configuration/frontmatter.tex}
-
 % Remerciements
 \input{../frontmatter/remerciements.tex}\clearpage{}
 
@@ -76,24 +75,31 @@
 \input{../frontmatter/nomenclature.tex}\clearpage{}
 % =============================================================
 
+% Configuration for the main matter
+\input{../configuration/mainmatter.tex}
 
 % =============================================================
 % MAIN MATTER
 % =============================================================
-% Configuration for the main matter
-\input{../configuration/mainmatter.tex}
-
 % Introduction
-\input{../introduction/introduction.tex}
+\subfile{../introduction/introduction.tex}\clearpage{}
 
 % Chapitre 1
-\input{../chap1/chap1.tex}
+\chapter{Titre du chapitre}%
+\label{chap:label-chapitre}
+\subfile{../chap1/eqandfigures.tex}\clearpage{}
+\subfile{../chap1/codesandlistes.tex}\clearpage{}
+% =====================================
 
 % Chapitre 2
-\input{../chap2/chap2.tex}
+\chapter{Titre du deuxième chapitre}%
+\label{chap:label-chapitre-2}
+\subfile{../chap2/paragraphanddivers.tex}\clearpage{}
+\subfile{../chap2/tableandreferences.tex}\clearpage{}
+% =====================================
 
 % Conclusion
-\input{../conclusion/conclusion.tex}
+\subfile{../conclusion/conclusion.tex}\clearpage{}
 % =============================================================
 
 
@@ -102,7 +108,9 @@
 % =============================================================
 % Add some separation for the table of contents
 \addtocontents{toc}{\protect\vskip2em}
-\input{../appendix/appendix.tex}
+\appendix
+\subfile{../appendix/A-mathematics.tex}\clearpage{}
+\subfile{../appendix/B-hinfiny.tex}\clearpage{}
 % =============================================================
 
 
@@ -117,9 +125,7 @@
 \clearpage{}
 
 % Bibliography
-\printbibliography[
-    heading=bibliography
-]
+\printbibliography[heading=bibliography]
 % =============================================================
 
 % =============================================================
