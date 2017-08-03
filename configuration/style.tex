@@ -372,7 +372,14 @@
 % \renewcommand{\thesection}{\@arabic\c@section}
 % \makeatother
 
-% % Should number subsubsection
-% \setcounter{secnumdepth}{4}
+% Should number subsubsection
+\setcounter{secnumdepth}{4}
+
+\makeatletter
+\renewcommand\thechapter{\Roman{chapter}}
+\renewcommand\thesection{\thechapter.\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\alph{subsubsection}}
+\makeatother
 % =============================================================
 
