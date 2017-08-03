@@ -1,10 +1,22 @@
 # LaTeX Template
 
+<!-- vim-markdown-toc GFM -->
+* [Tikz](#tikz)
+* [Makefile](#makefile)
+    * [Entire project](#entire-project)
+    * [Subfiles](#subfiles)
+    * [Tikz Figures](#tikz-figures)
+* [Troubleshoot](#troubleshoot)
+* [Ressources](#ressources)
+* [TODO](#todo)
+
+<!-- vim-markdown-toc -->
+
 ## Tikz
 
 You should create one .tex file for each Tikz picture with the standalone class as below.
 
-``` latex
+``` tex
 \documentclass[12pt,tikz]{standalone}
 
 \ifstandalone%
@@ -28,7 +40,7 @@ This permit to compile this file on its own.
 
 To include it into your document, just use `\includestandalone` like below.
 
-``` latex
+``` tex
 \begin{figure}[ht]
     \centering
     \includestandalone{filename}
@@ -41,7 +53,7 @@ But it will compile each time you make your main file (and it will not work for 
 
 An other solution to speed up the global compilation is to make one pdf file for each Tikz file and then use `\includegraphics`.
 
-``` latex
+``` tex
 \begin{figure}[ht]
     \centering
     \includegraphics{filename}
@@ -106,7 +118,6 @@ You can't use `\includestandalone` from a file with the class `subfiles`. So I r
 
 ## TODO
 
-
 - [ ] Changer la page de garde pour faire un truc plus général (logo d'entreprise général)
 - [ ] Mettre la numérotation des sections dans la marge
 - [ ] Refaire bien le fichier de présentation
@@ -114,4 +125,7 @@ You can't use `\includestandalone` from a file with the class `subfiles`. So I r
     - [ ] exemples et "snippets"
     - [ ] explication de chaque dossier
 - [ ] Mieux partitionner les packages
+    - [ ] Enlever les packages inutiles pour ne laisser que les packages indispensables
+- [ ] Faire une partie dans le readme avec les pré requis : latexmk, distribution texlive, dire que c'est pour système unix etc...
+- [ ] Voir ce qu'il se passe quand on build un subfile avec du code minted. Peut-être qu'on pourrait n'avoir qu'un seul latexmkrc
 
