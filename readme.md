@@ -59,22 +59,23 @@ It will create the file `filename.pdf` in the same directory (`ressources/tikz`)
 To compile each Tikz figures into pdf, use `make pdf t=tikz`.
 
 
-### Workflow
+## Makefile
 
-`make` - call `make pdf`
-`make pdf` - Build the entire project
-`make clean` - Clean the `main/build` directory (should not be used)
-`make watch` - Watch for changes and rebuild the entire project
-`make open` - Open the generated pdf
 
-`make pdf f=filename` - Build the subfile located `filename/filename.tex` into `filename/filename.pdf` (`filename` can be `titlepage`, `chap1`, `chap2`, `introduction`, or everything you want)
-`make watch f=filename` - Watch the file for changes
-`make open f=filename` - Open the pdf file corresponding to the filename
-
-`make pdf t=tikz` - Build all `.tex` files into the `ressources/tikz/` folder into `.pdf` files
-`make pdf t=tikz f=filename` - Build `ressources/tikz/filename.tex` into `ressources/tikz/filename.pdf`
-`make watch t=tikz f=filename` - continuously compile a tikz file into a pdf. Open the pdf, make changes to the .tex file until you are happy with the result. Then stop the build with `C-c` and you are good to go.
-`make open t=tikz f=filename` - open the pdf file corresponding to the Tikz figure
+| command      | filename     | type     | commentary                                                                     |
+| ------------ | ------------ | -------- | ------------------------------------------------------------------------------ |
+| `make`       |              |          | Build the entire project                                                       |
+| `make pdf`   |              |          | Build the entire project                                                       |
+| `make pdf`   | `f=filename` |          | Build the subfile located `filename/filename.tex` into `filename/filename.pdf` |
+| `make pdf`   |              | `t=tikz` | Build all `.tex` files into the `ressources/tikz/` folder into `.pdf` files    |
+| `make pdf`   | `f=filename` | `t=tikz` | Build `ressources/tikz/filename.tex` into `ressources/tikz/filename.pdf`       |
+| `make watch` |              |          | Watch for changes and rebuild the entire project                               |
+| `make watch` | `f=filename` |          | Watch the file for changes                                                     |
+| `make watch` | `f=filename` | `t=tikz` | Continuously compile a tikz file into a pdf                                    |
+| `make open`  |              |          | Open the generated pdf                                                         |
+| `make open`  | `f=filename` |          | Open the pdf file corresponding to the filename                                |
+| `make open`  | `f=filename` | `t=tikz` | Open the pdf file corresponding to the Tikz figure                             |
+| `make clean` |              |          | Clean the `main/build` directory                                               |
 
 
 ## Troubleshoot
@@ -92,11 +93,11 @@ http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf
 ## TODO
 
 
-- Changer la page de garde pour faire un truc plus général (logo d'entreprise général)
-- Mettre la numérotation des sections dans la marge
-- Refaire bien le fichier de présentation
-- Compléter ce readme
-    - exemples et "snippets"
-    - explication de chaque dossier
-- Mieux partitionner les packages
+- [ ] Changer la page de garde pour faire un truc plus général (logo d'entreprise général)
+- [ ] Mettre la numérotation des sections dans la marge
+- [ ] Refaire bien le fichier de présentation
+- [ ] Compléter ce readme
+    - [ ] exemples et "snippets"
+    - [ ] explication de chaque dossier
+- [ ] Mieux partitionner les packages
 
