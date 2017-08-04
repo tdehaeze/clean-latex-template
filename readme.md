@@ -128,4 +128,5 @@ You can't use `\includestandalone` from a file with the class `subfiles`. So I r
     - [ ] Enlever les packages inutiles pour ne laisser que les packages indispensables
 - [ ] Faire une partie dans le readme avec les pré requis : latexmk, distribution texlive, dire que c'est pour système unix etc...
 - [ ] Voir ce qu'il se passe quand on build un subfile avec du code minted. Peut-être qu'on pourrait n'avoir qu'un seul latexmkrc
+- [ ] Utiliser la class `scrbook` de `KOMA-script`
 
