@@ -103,7 +103,6 @@ To compile each Tikz figures into pdf, use `make pdf t=tikz`.
 | `make open`  | `f=filename` | `t=tikz` | Open the pdf file corresponding to the Tikz figure                             |
 
 
-
 ## Troubleshoot
 
 You can't use `\includestandalone` from a file with the class `subfiles`. So I recommend generating a `pdf` file from the Tikz Standalone file using `make pdf t=tikz f=filename` and then include the generated pdf using `\includegraphics`.
@@ -119,7 +118,7 @@ You can't use `\includestandalone` from a file with the class `subfiles`. So I r
 ## TODO
 
 - [ ] Changer la page de garde pour faire un truc plus général (logo d'entreprise général)
-- [ ] Mettre la numérotation des sections dans la marge
+- [o] Mettre la numérotation des sections dans la marge
 - [ ] Refaire bien le fichier de présentation
 - [ ] Compléter ce readme
     - [ ] exemples et "snippets"
@@ -128,5 +127,7 @@ You can't use `\includestandalone` from a file with the class `subfiles`. So I r
     - [ ] Enlever les packages inutiles pour ne laisser que les packages indispensables
 - [ ] Faire une partie dans le readme avec les pré requis : latexmk, distribution texlive, dire que c'est pour système unix etc...
 - [ ] Voir ce qu'il se passe quand on build un subfile avec du code minted. Peut-être qu'on pourrait n'avoir qu'un seul latexmkrc
-- [ ] Utiliser la class `scrbook` de `KOMA-script`
+- [ ] Utiliser la classe `scrbook` de `KOMA-script`
+- [ ] Rajouter une variable pour permettre de faire un petit sommaire au début de chaque chapitre
+- [ ] Faire différentes catégories de bibliographie
 
