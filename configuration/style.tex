@@ -37,30 +37,10 @@
 % =============================================================
 % Chapter/Section style
 % =============================================================
-\usepackage{titletoc}
-\usepackage[toctitles]{titlesec} % Used to customize capter/section style
+\usepackage{titlesec} % Used to customize capter/section style
 
 \DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
 \captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
-
-\newcommand{\PartialToc}{%
-    {
-        \normalsize%
-        \startcontents[chapters]%
-        \vspace*{1cm}
-        \vbox{\bf Sommaire}%
-        \hrule{}%
-        \vspace*{-1em}
-        % \printcontents{}{1}{\section*{\contentsname}}
-        \printcontents%
-        [chapters]%name
-        {}%prefix
-        {1}%start-level
-        {}%toc-code
-        \vspace*{-3em}
-        \hrule{}%
-    }%
-}
 
 \makeatletter
 % Chapter Style
@@ -81,7 +61,6 @@
                         {\normalsize{\textsc{\@chapapp}}}% Print the chapter number
                 }%
             }\hspace{-1.5em}% Horizontal Shift of the chapter mark
-            \PartialToc
         }% Label
         {-3.0em}% Sep
         {\ctformatchapter}% Before Code
@@ -443,21 +422,20 @@
 % =============================================================
 
 
-% % =============================================================
-% % Mini TOC for each chapter
-% % =============================================================
-% \iftoggle{minitocchapter}{%
-%     \usepackage[french]{minitoc}
+% =============================================================
+% Local TOC for each chapter
+% =============================================================
+\iftoggle{minitocchapter}{%
+    \usepackage{etoc}
 
-%     % No indentation for minitoc
-%     \setlength{\mtcindent}{0pt}
+    \newcommand{\changetocstyle}[0]{
+        \etocsettocstyle{\medskip{\bf Sommaire}\medskip\hrule\medskip}{\medskip\hrule\bigskip}%
+    }
 
-%     % Depth of the mini toc (subsections)
-%     \setcounter{minitocdepth}{2}
-
-%     \dominitoc{}
-% }{}
-% % =============================================================
+    % Check if TOC is empty, if so don't display it
+    \etocchecksemptiness%
+}{}
+% =============================================================
 
 
 % =============================================================
