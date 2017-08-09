@@ -8,6 +8,10 @@
     * [Tikz Figures](#tikz-figures)
 * [Troubleshoot](#troubleshoot)
 * [Ressources](#ressources)
+* [Configuration](#configuration)
+* [Snippets](#snippets)
+    * [Chapitre avec nom plus court dans le footer et dans le sommaire](#chapitre-avec-nom-plus-court-dans-le-footer-et-dans-le-sommaire)
+    * [Section avec nom plus court dans le footer et dans le sommaire](#section-avec-nom-plus-court-dans-le-footer-et-dans-le-sommaire)
 * [TODO](#todo)
 
 <!-- vim-markdown-toc -->
@@ -113,6 +117,28 @@ You can't use `\includestandalone` from a file with the class `subfiles`. So I r
 - http://ash.id.au/post/2014/09/19/thesis-in-latex/
 - https://github.com/derric/cleanthesis
 - http://texdoc.net/texmf-dist/doc/support/latexmk/latexmk.pdf
+
+## Configuration
+
+Fichier `configuration/variables.tex`
+
+## Snippets
+
+### Chapitre avec nom plus court dans le footer et dans le sommaire
+
+``` tex
+\chapter[Nom du chapitre dans le sommaire]{Nom du chapitre}%
+\chaptermark{Nom du chapitre pour le footer}%
+\label{chap:label-du-chapitre}
+```
+
+### Section avec nom plus court dans le footer et dans le sommaire
+
+``` tex
+\chapter[Nom de la section dans le sommaire]{Nom de la section}%
+\chaptermark{Nom de la section pour le footer}%
+\label{sec:label-du-section}
+```
 
 
 ## TODO

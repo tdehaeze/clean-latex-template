@@ -2,7 +2,6 @@
 % Text Format
 % =============================================================
 \setstretch{1.2} % value for line spacing
-\setlength{\parindent}{0em} % value for paragraph indentation
 \clubpenalty=10000 % prevent single lines at the beginning of a paragraph (Schusterjungen)
 \widowpenalty=10000 % prevent single lines at the end of a paragraph (Hurenkinder)
 \displaywidowpenalty=10000 %
@@ -10,7 +9,6 @@
 
 \newcommand{\tgherosfont}{\fontfamily{qhv}\selectfont}
 % =============================================================
-
 
 
 % =============================================================
@@ -36,14 +34,33 @@
 % =============================================================
 
 
-
 % =============================================================
 % Chapter/Section style
 % =============================================================
-\usepackage{titlesec} % Used to customize capter/section style
+\usepackage{titletoc}
+\usepackage[toctitles]{titlesec} % Used to customize capter/section style
 
 \DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
 \captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
+
+\newcommand{\PartialToc}{%
+    {
+        \normalsize%
+        \startcontents[chapters]%
+        \vspace*{1cm}
+        \vbox{\bf Sommaire}%
+        \hrule{}%
+        \vspace*{-1em}
+        % \printcontents{}{1}{\section*{\contentsname}}
+        \printcontents%
+        [chapters]%name
+        {}%prefix
+        {1}%start-level
+        {}%toc-code
+        \vspace*{-3em}
+        \hrule{}%
+    }%
+}
 
 \makeatletter
 % Chapter Style
@@ -64,6 +81,7 @@
                         {\normalsize{\textsc{\@chapapp}}}% Print the chapter number
                 }%
             }\hspace{-1.5em}% Horizontal Shift of the chapter mark
+            \PartialToc
         }% Label
         {-3.0em}% Sep
         {\ctformatchapter}% Before Code
@@ -116,14 +134,14 @@
 \titlespacing{\section}{0em}{.75em}{.2em}
 \iftoggle{sectionmargin}{%
     \titleformat{\section}% Command
-        {\LARGE}% Format
-        {\hspace{-3cm}\makebox[3cm][r]{\color{colorblack}\thesection\hspace{0.5cm}}}% Label
+        {\huge}% Format
+        {\hspace{-3cm}\makebox[3cm][r]{\color{maincolor}\thesection\hspace{0.3cm}}}% Label
         {0em}% Sep
         {\raggedright}% Before Code
         [\phantomsection]% After Code
 }{%
     \titleformat{\section}% Command
-        {\LARGE}% Format
+        {\huge}% Format
         {\color{colorblack}\thesection\hspace*{10pt}}% Label
         {0em}% Sep
         {\raggedright}% Before Code
@@ -134,14 +152,14 @@
 \titlespacing{\subsection}{0em}{.5em}{0em}%[0pt]
 \iftoggle{sectionmargin}{%
     \titleformat{\subsection}[block]%
-        {\Large}%
-        {\hspace{-3cm}\makebox[3cm][r]{\color{colorblack}\thesubsection\hspace{0.5cm}}}% Label
+        {\LARGE}%
+        {\hspace{-3cm}\makebox[3cm][r]{\color{maincolor}\thesubsection\hspace{0.3cm}}}% Label
         {0em}%
         {\raggedright}%
         [\phantomsection]
 }{%
     \titleformat{\subsection}[block]%
-        {\Large}%
+        {\LARGE}%
         {\color{colorblack}\thesubsection\hspace*{10pt}}%
         {0em}%
         {\raggedright}%
@@ -152,21 +170,31 @@
 \iftoggle{sectionmargin}{%
     \titleformat{\subsubsection}% Command
         [hang]% Shape
-        {\large}% Format
-        {\hspace{-3cm}\makebox[3cm][r]{\color{colorblack}\thesubsubsection\hspace{0.5cm}}}% Label
+        {\Large}% Format
+        {\hspace{-3cm}\makebox[3cm][r]{\color{maincolor}\thesubsubsection\hspace{0.3cm}}}% Label
         {0em}% Sep
         {\raggedright}% Before Code
         [\phantomsection]% After Code
 }{%
     \titleformat{\subsubsection}% Command
         [hang]% Shape
-        {\large}% Format
+        {\Large}% Format
         {\color{colorblack}\thesubsubsection\hspace*{10pt}}% Label
         {0em}% Sep
         {\raggedright}% Before Code
         [\phantomsection]% After Code
 }
 \makeatother
+
+
+% Paragraph Style
+\titleformat{\paragraph}% Command
+    [hang]% Shape
+    {\bf}% Format
+    {}% Label
+    {0em}% Sep
+    {}% Before Code
+    []% After Code
 % =============================================================
 
 
@@ -380,11 +408,14 @@
 
 % Redefine Chapter command to put plain page style by default
 \makeatletter
-\renewcommand\chapter{\clearpage
-                    \thispagestyle{plain}
-                    \global\@topnum\z@
-                    \@afterindentfalse%
-                    \secdef\@chapter\@schapter}
+\renewcommand{\chapter}%
+{%
+    \clearpage% TODO: should put cleardoublepage ?
+    \thispagestyle{plain}
+    \global\@topnum\z@
+    \@afterindentfalse%
+    \secdef\@chapter\@schapter%
+}
 \makeatother
 % =============================================================
 
@@ -409,5 +440,43 @@
 \renewcommand\thesubsection{\thesection.\arabic{subsection}}
 \renewcommand\thesubsubsection{\thesubsection.\alph{subsubsection}}
 \makeatother
+% =============================================================
+
+
+% % =============================================================
+% % Mini TOC for each chapter
+% % =============================================================
+% \iftoggle{minitocchapter}{%
+%     \usepackage[french]{minitoc}
+
+%     % No indentation for minitoc
+%     \setlength{\mtcindent}{0pt}
+
+%     % Depth of the mini toc (subsections)
+%     \setcounter{minitocdepth}{2}
+
+%     \dominitoc{}
+% }{}
+% % =============================================================
+
+
+% =============================================================
+% Hyperref and PDF Options
+% =============================================================
+\usepackage[                    % setup the hyperref-package options
+    pdftitle={\reportTitle},    % title (PDF meta)
+    pdfauthor={\reportAuthor},  % author (PDF meta)
+    pdfsubject={\reportSubject},% subject (PDF meta)
+    pdfcreator={\reportAuthor}, % creator (PDF meta)
+    plainpages=false,           %
+    pdfborder={0 0 0},          %
+    breaklinks=true,            % allow line break inside links
+    bookmarksnumbered=true,     %
+    bookmarksopen=true,         %
+    colorlinks=true,            % colorize links?
+    allcolors=colorblack,%
+]{hyperref}
+
+\providecommand\phantomsection{} % TODO: explain
 % =============================================================
 

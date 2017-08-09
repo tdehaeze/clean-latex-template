@@ -70,37 +70,21 @@
 
 
 % =============================================================
-% Hyperref and PDF Options
-% =============================================================
-\usepackage[                    % setup the hyperref-package options
-    pdftitle={\reportTitle},    % title (PDF meta)
-    pdfauthor={\reportAuthor},  % author (PDF meta)
-    pdfsubject={\reportSubject},% subject (PDF meta)
-    pdfcreator={\reportAuthor}, % creator (PDF meta)
-    plainpages=false,           %
-    pdfborder={0 0 0},          %
-    breaklinks=true,            % allow line break inside links
-    bookmarksnumbered=true,     %
-    bookmarksopen=true,         %
-    colorlinks=true,            % colorize links?
-    allcolors=colorblack,%
-]{hyperref}
-
-\providecommand\phantomsection{} % TODO: explain
-% =============================================================
-
-
-% =============================================================
 % Some variable to customize theme
 % =============================================================
 % toogletrue to have a "fancy chapter" tooglefalse to don't
 \newtoggle{fancychapter}
 \toggletrue{fancychapter}
 
-\newlength\titleindent{}
-\setlength\titleindent{4em}
-
+% toogletrue to put section numbering into margin tooglefalse to don't
 \newtoggle{sectionmargin}
 \toggletrue{sectionmargin}
+
+% % toogletrue to have a mini toc for each chapter tooglefalse to don't
+% \newtoggle{minitocchapter}
+% \toggletrue{minitocchapter}
+
+% value for paragraph indentation
+\setlength{\parindent}{0em}
 % =============================================================
 
