@@ -6,6 +6,9 @@
 
 \DeclareCaptionLabelFormat{r-parens}{(\textbf{#2})} % Define our custom label
 
+\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
+\captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
+
 \captionsetup[listing]{%
     font={small},%
     labelfont={bf, sf, color=maincolor},%

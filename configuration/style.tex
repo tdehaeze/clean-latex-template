@@ -39,9 +39,6 @@
 % =============================================================
 \usepackage{titlesec} % Used to customize capter/section style
 
-\DeclareCaptionFormat{llap}{\llap{#1#2}#3\par}%
-\captionsetup{format=llap,labelsep=quad,singlelinecheck=false}%
-
 \makeatletter
 % Chapter Style
 \iftoggle{fancychapter}{%
@@ -163,8 +160,6 @@
         {\raggedright}% Before Code
         [\phantomsection]% After Code
 }
-\makeatother
-
 
 % Paragraph Style
 \titleformat{\paragraph}% Command
@@ -174,6 +169,8 @@
     {0em}% Sep
     {}% Before Code
     []% After Code
+
+\makeatother
 % =============================================================
 
 
@@ -185,7 +182,6 @@
 \pagestyle{fancy}
 
 \makeatletter
-
 % Used to set \leftmark for the unumered chapters
 \newcommand{\unumeredchaptermark}[1]{
 	\markboth{\footnotesize{\color{maincolor}\textsc{#1}}}{}%
@@ -248,7 +244,6 @@
     \fancyfoot[CE,CO]{}
     \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
     \fancyfoot[LE]{%
-        \footnotesize%
         \begin{minipage}[b]{1.5cm}%
             \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
         \end{minipage}%
@@ -322,7 +317,6 @@
     \fancyfoot[CE,CO]{}
     \fancyfoot[RE,LO]{}
     \fancyfoot[LE]{%
-        \footnotesize%
         \begin{minipage}[b]{1.5cm}%
             \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
         \end{minipage}%
@@ -359,7 +353,6 @@
     \fancyfoot[CE,CO]{}
     \fancyfoot[RE,LO]{}
     \fancyfoot[LE]{%
-        \footnotesize%
         \begin{minipage}[b]{1.5cm}%
             \raggedleft\color{colorblack}\normalsize\textbf{\thepage}%
         \end{minipage}%
@@ -402,14 +395,6 @@
 % =============================================================
 % Section Numbering
 % =============================================================
-% % Remove chapter number from section number
-% \makeatletter
-% \@addtoreset{section}{chapter}
-% \makeatother
-% \makeatletter
-% \renewcommand{\thesection}{\@arabic\c@section}
-% \makeatother
-
 % Should number subsubsection
 \setcounter{secnumdepth}{4}
 
@@ -428,9 +413,22 @@
 \iftoggle{minitocchapter}{%
     \usepackage{etoc}
 
+    \makeatletter
     \newcommand{\changetocstyle}[0]{
         \etocsettocstyle{\medskip{\bf Sommaire}\medskip\hrule\medskip}{\medskip\hrule\bigskip}%
     }
+    \makeatother
+    % \etocsettocstyle{\chapter{} *{\contentsname}}{}%
+
+    \def\etocarticlestyle{%
+        \etocsettocstyle
+        {\section *{\contentsname
+                %                \@mkboth {\MakeUppercase \contentsname}
+                %                         {\MakeUppercase \contentsname}
+            }
+        }
+        {}}
+    \makeatother
 
     % Check if TOC is empty, if so don't display it
     \etocchecksemptiness%

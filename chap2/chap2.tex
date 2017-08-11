@@ -13,7 +13,9 @@
 \chapter{Titre du deuxième chapitre un peu plus long}%
 \chaptermark{Nom plus court pour le chapitre}%
 \label{chap:label-chapitre-2}%
-\localtableofcontents{}
+\iftoggle{minitocchapter}{%
+    \localtableofcontents{}
+}{}
 
 \input{../chap2/paragraphanddivers.tex}\clearpage{}
 

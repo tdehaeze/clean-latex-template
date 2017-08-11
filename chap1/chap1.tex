@@ -13,7 +13,9 @@
 
 \chapter{Titre du chapitre}%
 \label{chap:label-chapitre}%
-\localtableofcontents{}
+\iftoggle{minitocchapter}{%
+    \localtableofcontents{}
+}{}
 
 \input{../chap1/eqandfigures.tex}\clearpage{}
 
