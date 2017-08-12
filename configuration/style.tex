@@ -379,16 +379,16 @@
 }
 
 % Redefine Chapter command to put plain page style by default
-\makeatletter
-\renewcommand{\chapter}%
-{%
-    \clearpage% TODO: should put cleardoublepage ?
-    \thispagestyle{plain}
-    \global\@topnum\z@
-    \@afterindentfalse%
-    \secdef\@chapter\@schapter%
-}
-\makeatother
+% \makeatletter
+% \renewcommand{\chapter}%
+% {%
+%     \clearpage% TODO: should put cleardoublepage ?
+%     \thispagestyle{plain}
+%     \global\@topnum\z@
+%     \@afterindentfalse%
+%     \secdef\@chapter\@schapter%
+% }
+% \makeatother
 % =============================================================
 
 
@@ -417,17 +417,13 @@
     \newcommand{\changetocstyle}[0]{
         \etocsettocstyle{\medskip{\bf Sommaire}\medskip\hrule\medskip}{\medskip\hrule\bigskip}%
     }
-    \makeatother
-    % \etocsettocstyle{\chapter{} *{\contentsname}}{}%
 
-    \def\etocarticlestyle{%
-        \etocsettocstyle
-        {\section *{\contentsname
-                %                \@mkboth {\MakeUppercase \contentsname}
-                %                         {\MakeUppercase \contentsname}
-            }
-        }
-        {}}
+    \newcommand{\chaptertoc}[0]{%
+        \iftoggle{minitocchapter}{%
+            \renewcommand{\markboth}[2]{}% So it don't change footers
+            \localtableofcontents*{}
+        }{}
+    }
     \makeatother
 
     % Check if TOC is empty, if so don't display it
