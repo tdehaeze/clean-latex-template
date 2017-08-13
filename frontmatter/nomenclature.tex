@@ -29,9 +29,9 @@
 % =============================================================
 
 {
-    \unumeredchaptermark{Liste des symboles}
     \renewcommand{\MakeUppercase}[1]{#1}
-    \addcontentsline{toc}{chapter}{\protect\numberline{}Liste des symboles}
     \printnomenclature[3.5em]
+    \addcontentsline{toc}{chapter}{\protect\numberline{}\nomname}
+    \unumeredchaptermark{\nomname}
 }
 

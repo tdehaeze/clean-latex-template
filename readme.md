@@ -12,6 +12,8 @@
 * [Snippets](#snippets)
     * [Chapitre avec nom plus court dans le footer et dans le sommaire](#chapitre-avec-nom-plus-court-dans-le-footer-et-dans-le-sommaire)
     * [Section avec nom plus court dans le footer et dans le sommaire](#section-avec-nom-plus-court-dans-le-footer-et-dans-le-sommaire)
+    * [Chapitre non numéroté](#chapitre-non-numrot)
+    * [Sous-sommaire pour un chapitre](#sous-sommaire-pour-un-chapitre)
 * [TODO](#todo)
 
 <!-- vim-markdown-toc -->
@@ -141,6 +143,21 @@ Fichier `configuration/variables.tex`
 \label{sec:label-du-section}
 ```
 
+### Chapitre non numéroté
+
+``` tex
+\chapter*{Nom du chapitre}%
+\label{chap:label-du-chapitre}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Nom du chapitre}
+\unumeredchaptermark{Nom du chapitre}
+```
+
+### Sous-sommaire pour un chapitre
+
+``` tex
+\chapter{Nom du chapitre}
+\chaptertoc{}
+```
 
 ## TODO
 
@@ -157,5 +174,6 @@ Fichier `configuration/variables.tex`
 - [ ] Utiliser la classe `scrbook` de `KOMA-script`
 - [x] Rajouter une variable pour permettre de faire un petit sommaire au début de chaque chapitre
     - [ ] Quand on compile un chapitre tout seul, pas de TOC
+    - [ ] Renew la commande chapter pour ajouter automatiquement le chapter toc ?
 - [ ] Faire différentes catégories de bibliographie
 
