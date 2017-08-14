@@ -108,3 +108,18 @@ watch:
 endif
 endif
 
+.PHONY: subfile
+ifeq ($(f),)
+else
+subfile:
+	mkdir $(f) && cp $(MAINDIRECTORY)/snippets/subfile.tex $(MAINDIRECTORY)/$(f)/$(f).tex
+endif
+
+.PHONY: tikz
+ifeq ($(f),)
+else
+tikz:
+	cp $(MAINDIRECTORY)/snippets/tikzpicture.tex $(MAINDIRECTORY)/ressources/tikz/$(f).tex
+endif
+
+
