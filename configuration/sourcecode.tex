@@ -3,8 +3,8 @@
 % =============================================================
 \usepackage[cache=false]{minted}
 
-\renewcommand{\listingscaption}{Code source}
-\renewcommand{\listoflistingscaption}{Liste des codes sources}
+\renewcommand{\listingscaption}{\listingscaptionname}
+\renewcommand{\listoflistingscaption}{\listoflistingsname}
 
 \providecommand{\listoflistings}{\listof{listing}{\listoflistingscaption}}
 
@@ -25,6 +25,13 @@
 }
 
 \newminted{cpp}{
+    linenos=true,
+    tabsize=4,
+    fontsize=\scriptsize,
+    autogobble=true,
+}
+
+\newmintedfile[pythonfile]{python}{
     linenos=true,
     tabsize=4,
     fontsize=\scriptsize,

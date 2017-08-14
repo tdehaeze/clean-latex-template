@@ -22,7 +22,6 @@ It's the template I made for my master Thesis. It can be easily customizable.
     * [Insert Code](#insert-code)
     * [Tikz](#tikz)
 * [Ressources](#ressources)
-* [TODO](#todo)
 
 <!-- vim-markdown-toc -->
 
@@ -32,6 +31,8 @@ It's the template I made for my master Thesis. It can be easily customizable.
 In order to use this template, you must have an up to date distribution of LaTeX ([MaxTeX](http://www.tug.org/mactex/) for MacOS and [TeXLive](http://www.tug.org/texlive/) for Linux and Windows). You can also use some online like [Overleaf](https://www.overleaf.com/) or [ShareLatex](https://www.sharelatex.com/).
 
 If you're on Linux or MacOs, you should install `latexmk` with automate the process of generating LaTeX documents. `latexmk` is used by the makefile to make the pdf output ([latexmk](https://www.ctan.org/pkg/latexmk/)).
+
+You also need `pygments` if you want to include some source code ([pygments](http://pygments.org/)).
 
 ## Architecture of the project
 
@@ -231,6 +232,16 @@ def get_path_leaf(path):
 
 ![GitHub Logo](./screenshot/code.png)
 
+You can also insert directly a source code file (your file must be inside the `ressources/code/` folder)
+
+``` tex
+\begin{listing}[H]
+\pythonfile{\codefolder{hello-world.py}}
+\caption{This piece of code is an included file}%
+\label{lst:included-code}%
+\end{listing}
+```
+
 
 ### Tikz
 
@@ -293,22 +304,12 @@ It will produce the exact same output but with no compilation time.
 - http://mirrors.ircam.fr/pub/CTAN/macros/latex/contrib/etoc/etoc.pdf
 
 
-## TODO
+> ## TODO
 
-- [x] Changer la page de garde pour faire un truc plus général (logo d'entreprise général)
-- [x] Mettre la numérotation des sections dans la marge
-- [x] Refaire bien le fichier de présentation
-- [ ] Compléter ce readme
-    - [x] exemples et "snippets"
-    - [x] explication de chaque dossier
-- [ ] Mieux partitionner les packages
-    - [ ] Enlever les packages inutiles pour ne laisser que les packages indispensables
-- [x] Faire une partie dans le readme avec les pré requis : latexmk, distribution texlive, dire que c'est pour système unix etc...
-- [ ] Voir ce qu'il se passe quand on build un subfile avec du code minted. Peut-être qu'on pourrait n'avoir qu'un seul latexmkrc
-- [ ] Utiliser la classe `scrbook` de `KOMA-script`
-- [x] Rajouter une variable pour permettre de faire un petit sommaire au début de chaque chapitre
-    - [ ] Quand on compile un chapitre tout seul, pas de TOC
-    - [ ] Renew la commande chapter pour ajouter automatiquement le chapter toc ?
-- [ ] Faire différentes catégories de bibliographie
-- [ ] Rajouter le template sur Overleaf et ShareLatex
+> - [ ] Utiliser la classe `scrbook` de `KOMA-script`
+> - [x] Rajouter une variable pour permettre de faire un petit sommaire au début de chaque chapitre
+>     - [ ] Quand on compile un chapitre tout seul, pas de TOC
+>     - [ ] Renew la commande chapter pour ajouter automatiquement le chapter toc ?
+> - [ ] Faire différentes catégories de bibliographie
+> - [ ] Rajouter le template sur Overleaf et ShareLatex
 

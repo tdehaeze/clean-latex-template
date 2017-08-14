@@ -43,13 +43,15 @@
 \newcommand{\nomenlaturename}{Liste des symboles}
 \newcommand{\bibliographyname}{Bibliographie}
 \newcommand{\listoffiguresname}{Table des Figures}
+\newcommand{\listingscaptionname}{Code source}
 \newcommand{\listoflistingsname}{Liste des codes sources}
 % =============================================================
 
 
 % =============================================================
-% Graphic Path
+% Path
 % =============================================================
+% Graphic Path
 \graphicspath{%
     {../ressources/}%
     {../ressources/pdf/}%
@@ -57,8 +59,10 @@
     {../ressources/logos/}%
     {../ressources/tikz/}%
 }
-% =============================================================
 
+% Source code Path
+\newcommand{\codefolder}[1]{../ressources/code/#1}
+% =============================================================
 
 % =============================================================
 % Colors
