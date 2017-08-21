@@ -41,8 +41,11 @@ ifeq ($(f),)
 ifeq ($(t), tikz)
 pdf:
 	cd ressources/tikz/ && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+	for file in *.tex; do \
+		latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $${file} && \
+		latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $${file} && \
+		pdfcrop "$${file%.tex}.pdf" "$${file%.tex}.pdf" ; \
+	done
 else
 pdf:
 	mkdir -p main/build && \
@@ -53,7 +56,8 @@ ifeq ($(t), tikz)
 pdf:
 	cd ressources/tikz/ && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $(f) && \
+	pdfcrop "$${f}.pdf" "$${f}.pdf"
 else
 pdf:
 	cd $(f) && \
@@ -99,7 +103,8 @@ ifeq ($(t), tikz)
 watch:
 	cd ressources/tikz/ && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -pvc $(f) && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $(f) && \
+	pdfcrop "$${f}.pdf" "$${f}.pdf"
 else
 watch:
 	cd $(f) && \
