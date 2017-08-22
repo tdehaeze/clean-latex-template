@@ -49,7 +49,8 @@ pdf:
 else
 pdf:
 	mkdir -p main/build && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_main $(PREVIEW_CONTINUOUSLY) main/main.tex
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_main $(PREVIEW_CONTINUOUSLY) main/main.tex && \
+	(${PDFVIEWER} main/build/main.pdf &> /dev/null &)
 endif
 else
 ifeq ($(t), tikz)
@@ -57,12 +58,14 @@ pdf:
 	cd ressources/tikz/ && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c $(f) && \
-	pdfcrop "$${f}.pdf" "$${f}.pdf"
+	pdfcrop "$${f}.pdf" "$${f}.pdf" && \
+	(${PDFVIEWER} $${f}.pdf &> /dev/null &)
 else
 pdf:
 	cd $(f) && \
 	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -bibtex $(f)/$(f) && \
-	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c
+	latexmk -r $(MAINDIRECTORY)/.latexmkrc_subfiles -c && \
+	(${PDFVIEWER} $(f).pdf &> /dev/null &)
 endif
 endif
 
@@ -81,14 +84,14 @@ endif
 .PHONY: open
 ifeq ($(f),)
 open:
-	(${PDFVIEWER} main/build/main.pdf &)
+	(${PDFVIEWER} main/build/main.pdf &> /dev/null &)
 else
 ifeq ($(t), tikz)
 open:
-	(${PDFVIEWER} ressources/tikz/$(f).pdf &)
+	(${PDFVIEWER} ressources/tikz/$(f).pdf &> /dev/null &)
 else
 open:
-	(${PDFVIEWER} $(f)/$(f).pdf &)
+	(${PDFVIEWER} $(f)/$(f).pdf &> /dev/null &)
 endif
 endif
 
