@@ -22,6 +22,7 @@ It's the template I made for my master Thesis. It can be easily customizable.
     * [Insert Code](#insert-code)
     * [Tikz](#tikz)
 * [Ressources](#ressources)
+* [TODO](#todo)
 
 <!-- vim-markdown-toc -->
 
@@ -304,12 +305,13 @@ It will produce the exact same output but with no compilation time.
 - http://mirrors.ircam.fr/pub/CTAN/macros/latex/contrib/etoc/etoc.pdf
 
 
-> ## TODO
+## TODO
 
-> - [ ] Utiliser la classe `scrbook` de `KOMA-script`
-> - [x] Rajouter une variable pour permettre de faire un petit sommaire au début de chaque chapitre
->     - [ ] Quand on compile un chapitre tout seul, pas de TOC
->     - [ ] Renew la commande chapter pour ajouter automatiquement le chapter toc ?
-> - [ ] Faire différentes catégories de bibliographie
-> - [ ] Rajouter le template sur Overleaf et ShareLatex
+- [ ] Utiliser la classe `scrbook` de `KOMA-script`
+- [x] Rajouter une variable pour permettre de faire un petit sommaire au début de chaque chapitre
+    - [ ] Quand on compile un chapitre tout seul, pas de TOC
+    - [ ] Renew la commande chapter pour ajouter automatiquement le chapter toc ?
+- [ ] Faire différentes catégories de bibliographie
+- [ ] Rajouter le template sur Overleaf et ShareLatex
+- [ ] Rajouter un espace plus grand après les sous sections
 
