@@ -243,7 +243,11 @@
 
     % Footer
     \fancyfootoffset[RE,LO]{1cm}
-    \fancyfoot[CE,CO]{}
+    \iftoggle{isconfidential}{%
+        \fancyfoot[CE,CO]{\vspace{1em}\confidential}
+    }{
+        \fancyfoot[CE,CO]{}
+    }
     \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
     \fancyfoot[LE]{%
         \begin{minipage}[b]{1.5cm}%
@@ -280,7 +284,11 @@
 
     % Footer
     \fancyfootoffset[RE,LO]{1cm}
-    \fancyfoot[CE,CO]{}
+    \iftoggle{isconfidential}{%
+        \fancyfoot[CE,CO]{\vspace{1em}\confidential}
+    }{
+        \fancyfoot[CE,CO]{}
+    }
     \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
     \fancyfoot[LE]{%
         \begin{minipage}[b]{1.5cm}%
@@ -316,7 +324,11 @@
 
     % Footer
     \fancyfootoffset[RE,LO]{1cm}
-    \fancyfoot[CE,CO]{}
+    \iftoggle{isconfidential}{%
+        \fancyfoot[CE,CO]{\vspace{1em}\confidential}
+    }{
+        \fancyfoot[CE,CO]{}
+    }
     \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
     \fancyfoot[LE]{%
         \begin{minipage}[b]{1.5cm}%
@@ -352,7 +364,11 @@
 
     % Footer
     \fancyfootoffset[RE,LO]{1cm}
-    \fancyfoot[CE,CO]{}
+    \iftoggle{isconfidential}{%
+        \fancyfoot[CE,CO]{\vspace{1em}\confidential}
+    }{
+        \fancyfoot[CE,CO]{}
+    }
     \fancyfoot[RE,LO]{\includegraphics[height=1em]{\schoolLogo}}
     \fancyfoot[LE]{%
         \begin{minipage}[b]{1.5cm}%

@@ -95,9 +95,14 @@
 \newtoggle{sectionmargin}
 \toggletrue{sectionmargin}
 
-% % toogletrue to have a mini toc for each chapter tooglefalse to don't
+% toogletrue to have a mini toc for each chapter tooglefalse to don't
 \newtoggle{minitocchapter}
 \toggletrue{minitocchapter}
+
+% toogletrue to print "Confidentiel"
+\newtoggle{isconfidential}
+\toggletrue{isconfidential}
+\newcommand{\confidential}{\color{colorred}\textsc{confidentiel}}
 
 % value for paragraph indentation
 \setlength{\parindent}{0em}

@@ -313,5 +313,5 @@ It will produce the exact same output but with no compilation time.
     - [ ] Renew la commande chapter pour ajouter automatiquement le chapter toc ?
 - [ ] Faire différentes catégories de bibliographie
 - [ ] Rajouter le template sur Overleaf et ShareLatex
-- [ ] Rajouter un espace plus grand après les sous sections
+- [x] Rajouter un espace plus grand après les sous sections
 
