@@ -3,6 +3,7 @@
 It's the template I made for my master Thesis. It can be easily customizable.
 
 <!-- vim-markdown-toc GFM -->
+
 * [Installation](#installation)
 * [Architecture of the project](#architecture-of-the-project)
 * [Using the Makefile](#using-the-makefile)
@@ -314,4 +315,5 @@ It will produce the exact same output but with no compilation time.
 - [ ] Faire différentes catégories de bibliographie
 - [ ] Rajouter le template sur Overleaf et ShareLatex
 - [x] Rajouter un espace plus grand après les sous sections
+- [ ] Ajout quelques snippets (side figures)
 
