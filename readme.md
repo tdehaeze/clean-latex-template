@@ -19,6 +19,7 @@ It's the template I made for my master Thesis. It can be easily customizable.
     * [Small table of contents for a chapter](#small-table-of-contents-for-a-chapter)
     * [Simple figure](#simple-figure)
     * [Subfigures](#subfigures)
+    * [Side Figures](#side-figures)
     * [Wrap Figure](#wrap-figure)
     * [Insert Code](#insert-code)
     * [Tikz](#tikz)
@@ -200,6 +201,27 @@ Most of the customization can be done in `configuration/variables.tex`:
 
 ![GitHub Logo](./screenshot/sub_figures.png)
 
+### Side Figures
+
+``` tex
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{image1.jpg}
+        \caption{Very very long caption for a subfigure. This is setup with subcaption package.}%
+        \label{fig:image1}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.95\linewidth]{image2.jpg}
+        \caption{Short caption}%
+        \label{fig:image2}
+    \end{minipage}
+\end{figure}
+```
+
 
 ### Wrap Figure
 
@@ -209,7 +231,7 @@ Most of the customization can be done in `configuration/variables.tex`:
     \includegraphics[width=0.4\textwidth]{image4.jpg}%
     \caption{caption}%
     \label{fig:wrapfig}
-\end{wrapfigure}
+\end{wrapfigure}\noindent%
 ```
 
 ![GitHub Logo](./screenshot/wrap_figure.png)
@@ -315,5 +337,5 @@ It will produce the exact same output but with no compilation time.
 - [ ] Faire différentes catégories de bibliographie
 - [ ] Rajouter le template sur Overleaf et ShareLatex
 - [x] Rajouter un espace plus grand après les sous sections
-- [ ] Ajout quelques snippets (side figures)
+- [x] Ajout quelques snippets (side figures)
 
